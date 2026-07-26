@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Gnana Sri — terminal prompt logo">
+  <defs>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"    stop-color="#12141A"/>
+      <stop offset="1"    stop-color="#0A0B0F"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#FFC24A"/>
+      <stop offset="1"   stop-color="#FFB020"/>
+    </linearGradient>
+  </defs>
+
+  <!-- chip -->
+  <rect width="64" height="64" rx="14" fill="url(#chipGrad)"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none"
+        stroke="#FFB020" stroke-opacity="0.32" stroke-width="1.25"/>
+
+  <!-- inner grid hint -->
+  <g stroke="#FFB020" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="16" x2="64" y2="16"/>
+    <line x1="0" y1="32" x2="64" y2="32"/>
+    <line x1="0" y1="48" x2="64" y2="48"/>
+    <line x1="16" y1="0" x2="16" y2="64"/>
+    <line x1="32" y1="0" x2="32" y2="64"/>
+    <line x1="48" y1="0" x2="48" y2="64"/>
+  </g>
+
+  <!-- >_ terminal prompt -->
+  <path d="M17 20 L31 32 L17 44"
+        stroke="url(#amberGrad)" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <line x1="36" y1="46" x2="50" y2="46"
+        stroke="url(#amberGrad)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- blinking cursor accent (top-right dot) -->
+  <circle cx="52" cy="14" r="2.6" fill="#4AE290"/>
+</svg>

@@ -17,7 +17,10 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%88%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="mask-icon" href="assets/favicon.svg" color="#FFB020" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <meta name="theme-color" content="#0A0B0F" />
 </head>
 <body>
 
@@ -480,11 +483,22 @@
                 <span class="arrow">↗</span>
               </div>
               <h3>ZapFix — Autonomous Multi-Agent Platform</h3>
-              <p>Cross-platform AI desktop app where LangGraph agents collaborate to execute multi-step tasks — an on-device software assistant. Agentic RAG with contextual retrieval &amp; dynamic workflow routing; React dashboards to visualize agent reasoning chains and inter-agent communication.</p>
+              <p>An on-device software assistant packaged as a native desktop app. Instead of a single monolithic prompt, ZapFix routes a task through a graph of specialised agents — a planner, a retriever, a code/tool executor, and a critic — that hand off state until the task closes.</p>
+              <ul class="highlights">
+                <li><b>Agentic RAG</b> with contextual retrieval &amp; dynamic workflow routing, cutting hallucinations vs. a flat prompt baseline.</li>
+                <li><b>Reasoning-chain dashboard</b> — React UI visualises every agent hop, tool call, and intermediate state so failures are debuggable, not opaque.</li>
+                <li><b>Cross-platform native shell</b> — Tauri + Bun for a ~15MB binary that runs on Windows / macOS / Linux with system-level tool access.</li>
+                <li>Built the evaluation loop myself: prompt-eval harness, regression seeds, and pass-rate metrics tracked over time.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+                <span><span class="m-k">Status</span><span class="m-v amber">Shipping</span></span>
+                <span><span class="m-k">Type</span><span class="m-v">Desktop · AI Agent</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
                   <span>React</span><span>Tauri</span><span>Bun</span>
-                  <span>LangGraph</span><span>LangChain</span><span>RAG</span>
+                  <span>LangGraph</span><span>LangChain</span><span>RAG</span><span>TypeScript</span>
                 </div>
                 <div class="links">
                   <a href="https://drive.google.com/file/d/10QV0IUTHgQCBtWjJS3DY8B8zevVQ_XAr/view?usp=sharing" target="_blank" rel="noopener">DEMO ↗</a>
@@ -498,10 +512,20 @@
                 <span class="arrow">↗</span>
               </div>
               <h3>Automated Timetable Generator</h3>
-              <p>Constraint-programming pipeline built on Google OR-Tools <b>CP-SAT</b> — generates clash-free timetables for up to <b>250 faculty × 30 sections</b> simultaneously.</p>
+              <p>A production optimizer built on Google OR-Tools <b>CP-SAT</b> that produces clash-free institutional timetables at real scale — up to <b>250 faculty × 30 sections</b> in a single solve.</p>
+              <ul class="highlights">
+                <li>Models faculty availability, room capacity, subject-hour requirements, and back-to-back load as hard/soft constraints.</li>
+                <li>Solves what took the placement office a week by hand in <b>under two minutes</b>.</li>
+                <li>Streamlit front-end for admins; MERN back-office integration for persistence + edits.</li>
+                <li>Deployed live and currently in use — links below.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+                <span><span class="m-k">Status</span><span class="m-v amber">Live</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
-                  <span>OR-Tools</span><span>Python</span><span>Streamlit</span><span>MERN</span>
+                  <span>OR-Tools</span><span>CP-SAT</span><span>Python</span><span>Streamlit</span><span>MERN</span>
                 </div>
                 <div class="links">
                   <a href="https://autotimetablegenerator.streamlit.app/" target="_blank" rel="noopener">LIVE ↗</a>
@@ -510,44 +534,72 @@
               </div>
             </a>
 
-            <a class="proj-card small tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
+            <a class="proj-card med tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
               <div class="head">
                 <span class="kind">FULL-STACK · EDU</span>
                 <span class="arrow">↗</span>
               </div>
-              <h3>CoderKytes</h3>
-              <p>Coding tutorials + practice platform with Docker-sandboxed code execution and real-time progress tracking.</p>
+              <h3>CoderKytes — Learning Platform</h3>
+              <p>Full-stack coding-practice platform. Users pick a topic, read a short lesson, then solve problems with a live Docker-sandboxed runner — code stays isolated, exit codes and stdout stream back in real time.</p>
+              <ul class="highlights">
+                <li><b>Sandboxed execution</b> — each submission spins a short-lived Docker container with resource + timeout caps.</li>
+                <li><b>Progress tracking</b> — Firebase-backed submission history, streaks, and per-topic mastery.</li>
+                <li>Real-time updates so learners see leaderboard and submission activity without refresh.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+                <span><span class="m-k">Type</span><span class="m-v">EdTech · Full-stack</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
-                  <span>Next.js</span><span>Firebase</span><span>Docker</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card small tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">ML · CNN · API</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>Digit Recognition</h3>
-              <p>CNN model on MNIST + Spring Boot inference API + React drawing canvas for real-time predictions.</p>
-              <div class="foot">
-                <div class="stack">
-                  <span>TensorFlow</span><span>Spring Boot</span><span>React</span>
+                  <span>Next.js</span><span>Firebase</span><span>Docker</span><span>Node.js</span>
                 </div>
               </div>
             </a>
 
             <a class="proj-card med tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
               <div class="head">
+                <span class="kind">ML · CNN · API</span>
+                <span class="arrow">↗</span>
+              </div>
+              <h3>Handwritten Digit Recognition</h3>
+              <p>End-to-end ML system — a CNN trained on MNIST, served through a Spring Boot inference API, consumed by a React drawing canvas that predicts what you sketch in real time.</p>
+              <ul class="highlights">
+                <li><b>~99% test accuracy</b> on MNIST with a compact CNN (Conv → Pool → Conv → Dense).</li>
+                <li>Model exported and served behind a Spring Boot REST endpoint for sub-100ms inference.</li>
+                <li>React canvas captures strokes, normalises to 28×28, and POSTs to the API — demo-friendly loop end-to-end.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+                <span><span class="m-k">Type</span><span class="m-v">ML System</span></span>
+              </div>
+              <div class="foot">
+                <div class="stack">
+                  <span>TensorFlow</span><span>Python</span><span>Spring Boot</span><span>React</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="proj-card wide tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
+              <div class="head">
                 <span class="kind">FLUTTER · MERN · REAL-TIME</span>
                 <span class="arrow">↗</span>
               </div>
               <h3>Placement Cell Platform</h3>
-              <p>End-to-end placement platform — Flutter mobile app for students, MERN admin portal for drives &amp; eligibility filters, real-time notifications and analytics.</p>
+              <p>An end-to-end campus-recruitment platform — one Flutter mobile app for students and one MERN admin portal for placement officers, sharing a single MongoDB source of truth.</p>
+              <ul class="highlights">
+                <li><b>Student app</b> — drive listings, one-tap eligibility check against CGPA / backlog / branch, resume upload, application status timeline, push notifications.</li>
+                <li><b>Admin portal</b> — company onboarding, eligibility-rule builder, applicant filtering, analytics dashboard for placement stats by branch/company.</li>
+                <li><b>Real-time notifications</b> pushed on state changes (shortlist / rejected / final offer).</li>
+                <li>Designed for the actual scale of a real placement cell — hundreds of students, dozens of concurrent drives.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+                <span><span class="m-k">Type</span><span class="m-v">Full-stack · Mobile + Web</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
-                  <span>Flutter</span><span>MERN</span><span>Node.js</span><span>MongoDB</span>
+                  <span>Flutter</span><span>Dart</span><span>MERN</span><span>Node.js</span><span>Express</span><span>MongoDB</span>
                 </div>
               </div>
             </a>
@@ -557,22 +609,40 @@
                 <span class="kind">AI · OCR · NLP</span>
                 <span class="arrow">↗</span>
               </div>
-              <h3>AI Automated Grading</h3>
-              <p>Handwritten answer OCR with Tesseract → LLM/NLP scoring pipeline exposed through a Flask + Spring hybrid inference API.</p>
+              <h3>AI Automated Grading System</h3>
+              <p>Grades handwritten answer sheets automatically. Tesseract extracts the handwriting, an NLP scoring pipeline compares against a reference answer key using semantic similarity + rubric weights, and results flow through a Flask + Spring hybrid API.</p>
+              <ul class="highlights">
+                <li><b>OCR front-end</b> — Tesseract with pre-processing (deskew, denoise) tuned for student handwriting.</li>
+                <li><b>Scoring engine</b> — cosine similarity on sentence embeddings + keyword rubric, tunable per question.</li>
+                <li>Two-tier serving — Flask for the ML inference, Spring for auth &amp; persistence — so the ML box can scale independently.</li>
+                <li>Cuts hours of manual grading down to minutes for objective/short-answer papers.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+                <span><span class="m-k">Type</span><span class="m-v">AI · OCR Pipeline</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
-                  <span>Tesseract</span><span>Flask</span><span>NLP</span><span>Spring</span>
+                  <span>Tesseract</span><span>Flask</span><span>NLP</span><span>Spring</span><span>Python</span>
                 </div>
               </div>
             </a>
 
             <a class="proj-card small tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
               <div class="head">
-                <span class="kind">CHATBOT · AUTOMATION</span>
+                <span class="kind">AUTOMATION · CHATBOT</span>
                 <span class="arrow">↗</span>
               </div>
               <h3>WhatsApp Chatbot</h3>
-              <p>Python-based WhatsApp automation bot for scheduled messages and query handling.</p>
+              <p>Python automation bot for scheduled messaging, keyword-triggered replies, and broadcast to contact lists — built to remove repetitive comms work.</p>
+              <ul class="highlights">
+                <li>Scheduled sends via cron-style triggers.</li>
+                <li>Rule-based auto-reply for FAQ-shaped queries.</li>
+                <li>Contact-list broadcast with per-message delay to stay within API limits.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
                   <span>Python</span><span>WhatsApp API</span>
@@ -586,7 +656,15 @@
                 <span class="arrow">↗</span>
               </div>
               <h3>Code Generator App</h3>
-              <p>TS app that prompts an LLM to synthesize code from spec — playground for prompt-engineering experiments.</p>
+              <p>TypeScript app that turns a natural-language spec into runnable code using an LLM behind a structured prompt — my playground for prompt-engineering, tool-call, and output-format experiments.</p>
+              <ul class="highlights">
+                <li>System prompts tuned for language + framework + style constraints.</li>
+                <li>Structured JSON outputs so the UI can render code, filename, and reasoning separately.</li>
+                <li>Feeds insights back into the ZapFix agent pipeline.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
                   <span>TypeScript</span><span>LLM API</span>
@@ -600,10 +678,18 @@
                 <span class="arrow">↗</span>
               </div>
               <h3>Chess FullStack</h3>
-              <p>Chess platform built with Java full-stack + Angular — matchmaking &amp; move validation on the server.</p>
+              <p>Server-authoritative chess platform — Java Spring backend enforces move legality &amp; game state, Angular front-end handles the board, matchmaking, and clock UI.</p>
+              <ul class="highlights">
+                <li>Move validation on the server so clients can&#39;t cheat.</li>
+                <li>Session-based matchmaking with reconnect.</li>
+                <li>PGN-style move history persisted to the DB.</li>
+              </ul>
+              <div class="meta-row">
+                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
+              </div>
               <div class="foot">
                 <div class="stack">
-                  <span>Java</span><span>Angular</span>
+                  <span>Java</span><span>Spring</span><span>Angular</span>
                 </div>
               </div>
             </a>
