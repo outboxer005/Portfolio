@@ -81,9 +81,13 @@ netlify deploy --prod --dir .
 
 ### Cloudflare Pages
 
-1. https://dash.cloudflare.com → Pages → Create → Connect repo.
-2. Build command: *(blank)*. Build output: `site` (or `/` if pushed alone).
-3. Deploy.
+1. https://dash.cloudflare.com → **Workers &amp; Pages** → **Create** → **Pages** → **Connect to Git**.
+2. Select the `outboxer005/Portfolio` repo.
+3. **Framework preset:** *None*. **Build command:** *(blank)*. **Build output directory:** `/` (or `site` if you pushed the whole parent folder).
+4. **Deploy** — live at `<project-name>.pages.dev` in ~30 seconds.
+5. Custom domain: Pages project → **Custom domains** → **Set up a custom domain** — Cloudflare handles HTTPS automatically.
+
+The included `_headers` file gives Cloudflare Pages proper security headers and cache directives out of the box — no dashboard config needed.
 
 ## Customize
 

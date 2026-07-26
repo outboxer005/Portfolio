@@ -63,7 +63,7 @@
   };
   let stored = null;
   try { stored = localStorage.getItem('theme'); } catch (e) {}
-  const initial = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const initial = stored || 'dark';
   setTheme(initial);
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {

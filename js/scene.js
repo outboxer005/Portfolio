@@ -28,7 +28,7 @@
   const group = new THREE.Group();
   scene.add(group);
 
-  const geometry = new THREE.IcosahedronGeometry(2.6, 3);
+  const geometry = new THREE.IcosahedronGeometry(2.6, window.innerWidth < 720 ? 2 : 3);
   const basePositions = geometry.attributes.position.array.slice();
 
   const wireframeMat = new THREE.MeshBasicMaterial({
@@ -67,7 +67,8 @@
   group.add(ring2);
 
   // ---------- Particle field ----------
-  const particleCount = 900;
+  const isMobile = window.innerWidth < 720;
+  const particleCount = isMobile ? 320 : 900;
   const particlePositions = new Float32Array(particleCount * 3);
   const particleSpeeds = new Float32Array(particleCount);
 
@@ -97,7 +98,7 @@
   scene.add(particles);
 
   // Accent particles (amber)
-  const accentCount = 180;
+  const accentCount = isMobile ? 70 : 180;
   const accentPositions = new Float32Array(accentCount * 3);
   for (let i = 0; i < accentCount; i++) {
     const r = 4 + Math.random() * 6;
