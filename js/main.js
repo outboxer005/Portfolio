@@ -1,327 +1,235 @@
-/* =============================================================
-   Main interactions
-   - Lenis smooth scroll
-   - GSAP scroll-triggered reveals
-   - Custom cursor
-   - Text scramble
-   - Magnetic buttons
-   - Tilt cards
-   - Number count-up
-   - Theme toggle
-   ============================================================= */
+/* Optional visuals enhance content; navigation and theme never depend on a CDN. */
 (function () {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouch = matchMedia('(pointer: coarse)').matches;
-
-  /* ==================== LENIS SMOOTH SCROLL ==================== */
-  let lenis = null;
-  if (typeof Lenis !== 'undefined' && !reduce) {
-    lenis = new Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.4
-    });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // GSAP ScrollTrigger sync
-    if (typeof ScrollTrigger !== 'undefined') {
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-    }
-  }
-
-  // Anchor click smooth scroll fallback via Lenis
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener('click', (e) => {
-      const href = a.getAttribute('href');
-      if (!href || href === '#') return;
-      const el = document.querySelector(href);
-      if (!el) return;
-      e.preventDefault();
-      if (lenis) {
-        lenis.scrollTo(el, { offset: -60 });
-      } else {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  'use strict';
+  const root = document.documentElement;
+  const media = matchMedia('(prefers-reduced-motion: reduce)');
+  const touch = matchMedia('(pointer: coarse)').matches;
+  const disposers = [];
+  const on = (target, event, fn, options) => {
+    target.addEventListener(event, fn, options);
+    disposers.push(() => target.removeEventListener(event, fn, options));
+  };
+  const safely = (name, fn) => {
+    try { fn(); } catch (error) { console.warn(`${name} unavailable; content remains usable.`, error); }
+  };
+  const read = key => { try { return localStorage.getItem(key); } catch { return null; } };
+  const save = (key, value) => { try { localStorage.setItem(key, value); } catch { /* Storage is optional. */ } };
+  safely('Theme', () => {
+    const button = document.getElementById('themeBtn');
+    const setTheme = theme => {
+      root.dataset.theme = theme;
+      button.textContent = theme.toUpperCase();
+      button.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+      save('theme', theme);
+    };
+    setTheme(read('theme') === 'light' ? 'light' : 'dark');
+    button.hidden = false;
+    on(button, 'click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+  });
+  let paused = read('motion') === 'paused';
+  const moving = () => !media.matches && !paused && !document.hidden;
+  const motionButton = document.getElementById('motionBtn');
+  const motionChanged = () => {
+    root.dataset.motion = paused || media.matches ? 'paused' : 'running';
+    motionButton.textContent = media.matches ? 'Reduced motion enabled' : paused ? 'Resume motion' : 'Pause motion';
+    motionButton.setAttribute('aria-pressed', String(paused || media.matches));
+    motionButton.disabled = media.matches;
+    window.dispatchEvent(new CustomEvent('portfolio:motion', {detail: {paused: !moving()}}));
+  };
+  motionButton.hidden = false;
+  on(motionButton, 'click', () => { paused = !paused; save('motion', paused ? 'paused' : 'running'); motionChanged(); });
+  on(media, 'change', motionChanged);
+  on(document, 'visibilitychange', motionChanged);
+  motionChanged();
+  let closeMenu = () => {};
+  safely('Mobile menu', () => {
+    const button = document.getElementById('menuBtn');
+    const panel = document.getElementById('mobileNav');
+    const links = [...panel.querySelectorAll('a')];
+    const setOpen = (open, returnFocus = false) => {
+      panel.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+      button.innerHTML = open ? 'CLOSE <span aria-hidden="true">−</span>' : 'MENU <span aria-hidden="true">+</span>';
+      if (open) links[0].focus(); else if (returnFocus) button.focus();
+    };
+    closeMenu = () => setOpen(false);
+    button.hidden = false;
+    on(button, 'click', () => setOpen(panel.hidden));
+    on(document, 'keydown', event => {
+      if (panel.hidden) return;
+      if (event.key === 'Escape') { event.preventDefault(); setOpen(false, true); }
+      if (event.key === 'Tab') {
+        if (event.shiftKey && document.activeElement === links[0]) { event.preventDefault(); button.focus(); }
+        else if (!event.shiftKey && document.activeElement === links.at(-1)) { event.preventDefault(); button.focus(); }
+        else if (document.activeElement === button) { event.preventDefault(); (event.shiftKey ? links.at(-1) : links[0]).focus(); }
       }
+    });
+    on(document, 'click', event => { if (!panel.hidden && !event.target.closest('.top-nav')) setOpen(false, true); });
+    on(matchMedia('(min-width: 801px)'), 'change', event => { if (event.matches) setOpen(false); });
+  });
+  let lenis = null;
+  let stopClock = () => {};
+  safely('Smooth scroll', () => {
+    if (typeof Lenis === 'undefined') return;
+    const sync = () => {
+      stopClock(); stopClock = () => {};
+      if (!moving()) { lenis?.destroy(); lenis = null; return; }
+      if (!lenis) {
+        lenis = new Lenis({duration: 1.15, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.4});
+        if (typeof ScrollTrigger !== 'undefined') lenis.on('scroll', ScrollTrigger.update);
+      }
+      // Exactly one clock: the GSAP ticker, or RAF if GSAP is unavailable.
+      if (typeof gsap !== 'undefined') {
+        const tick = time => lenis?.raf(time * 1000);
+        gsap.ticker.add(tick);
+        stopClock = () => gsap.ticker.remove(tick);
+      } else {
+        let id;
+        const tick = time => { lenis?.raf(time); id = requestAnimationFrame(tick); };
+        id = requestAnimationFrame(tick);
+        stopClock = () => cancelAnimationFrame(id);
+      }
+    };
+    on(window, 'portfolio:motion', sync); sync();
+    disposers.push(() => { stopClock(); lenis?.destroy(); });
+  });
+  safely('Anchor navigation', () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => on(anchor, 'click', event => {
+      const id = anchor.getAttribute('href').slice(1), target = document.getElementById(id);
+      if (!target) return;
+      event.preventDefault(); closeMenu();
+      const offset = document.querySelector('.top-nav').getBoundingClientRect().bottom + 18;
+      const focus = () => { if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1'); target.focus({preventScroll: true}); };
+      history.pushState(null, '', `#${id}`);
+      if (lenis && moving()) lenis.scrollTo(target, {offset: -offset, onComplete: focus});
+      else { window.scrollTo({top: target.getBoundingClientRect().top + scrollY - offset, behavior: moving() ? 'smooth' : 'instant'}); focus(); }
+    }));
+  });
+  safely('Custom cursor', () => {
+    const dot = document.querySelector('.cursor-dot'), ring = document.querySelector('.cursor-ring');
+    if (touch || !dot || !ring) return;
+    let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y, frame = 0;
+    const tick = () => {
+      if (!moving()) { frame = 0; document.body.classList.remove('cursor-ready'); return; }
+      rx += (x - rx) * .18; ry += (y - ry) * .18;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      if (Math.abs(x - rx) + Math.abs(y - ry) > .1) frame = requestAnimationFrame(tick); else frame = 0;
+    };
+    on(window, 'mousemove', event => {
+      if (!moving()) return;
+      x = event.clientX; y = event.clientY;
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      if (!frame) frame = requestAnimationFrame(tick);
+      document.body.classList.add('cursor-ready');
+    });
+    on(window, 'portfolio:motion', () => { if (!moving()) { cancelAnimationFrame(frame); frame = 0; document.body.classList.remove('cursor-ready'); } });
+    on(document, 'mouseout', event => { if (!event.relatedTarget) document.body.classList.remove('cursor-ready'); });
+    on(document, 'keydown', event => { if (event.key === 'Tab') document.body.classList.remove('cursor-ready'); });
+    document.querySelectorAll('[data-cursor]').forEach(el => {
+      on(el, 'mouseenter', () => { ring.classList.remove('hover', 'cta', 'view'); ring.classList.add(el.dataset.cursor); });
+      on(el, 'mouseleave', () => ring.classList.remove('hover', 'cta', 'view'));
+    });
+    disposers.push(() => cancelAnimationFrame(frame));
+  });
+  safely('Pointer depth', () => {
+    if (touch) return;
+    document.querySelectorAll('.magnetic, .continuation .tilt').forEach(el => {
+      let rect;
+      on(el, 'pointerenter', () => { rect = el.getBoundingClientRect(); });
+      on(el, 'pointermove', event => {
+        if (!moving() || !rect) return;
+        const dx = (event.clientX - rect.left) / rect.width - .5, dy = (event.clientY - rect.top) / rect.height - .5;
+        el.style.transform = el.classList.contains('magnetic') ? `translate(${dx * 22}px, ${dy * 22}px)` : `perspective(1000px) rotateX(${dy * -4}deg) rotateY(${dx * 4}deg)`;
+        el.style.setProperty('--mx', `${(dx + .5) * 100}%`); el.style.setProperty('--my', `${(dy + .5) * 100}%`);
+      });
+      const reset = () => { el.style.transform = ''; };
+      on(el, 'pointerleave', reset);
+      on(window, 'portfolio:motion', () => { if (!moving()) reset(); });
     });
   });
-
-  /* ==================== THEME TOGGLE ==================== */
-  const themeBtn = document.getElementById('themeBtn');
-  const root = document.documentElement;
-  const setTheme = (t) => {
-    root.setAttribute('data-theme', t);
-    if (themeBtn) themeBtn.textContent = t.toUpperCase();
-    try { localStorage.setItem('theme', t); } catch (e) {}
-  };
-  let stored = null;
-  try { stored = localStorage.getItem('theme'); } catch (e) {}
-  const initial = stored || 'dark';
-  setTheme(initial);
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-  }
-
-  /* ==================== CUSTOM CURSOR ==================== */
-  if (!isTouch) {
-    const dot = document.querySelector('.cursor-dot');
-    const ring = document.querySelector('.cursor-ring');
-    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const ringPos = { x: pos.x, y: pos.y };
-
-    window.addEventListener('mousemove', (e) => {
-      pos.x = e.clientX;
-      pos.y = e.clientY;
-      if (dot) {
-        dot.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`;
-      }
-    });
-
-    const tickCursor = () => {
-      ringPos.x += (pos.x - ringPos.x) * 0.18;
-      ringPos.y += (pos.y - ringPos.y) * 0.18;
-      if (ring) {
-        ring.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`;
-      }
-      requestAnimationFrame(tickCursor);
-    };
-    tickCursor();
-
-    // Hover states
-    document.querySelectorAll('[data-cursor]').forEach((el) => {
-      const kind = el.getAttribute('data-cursor');
-      el.addEventListener('mouseenter', () => {
-        ring?.classList.remove('hover', 'cta', 'view');
-        ring?.classList.add(kind);
-      });
-      el.addEventListener('mouseleave', () => {
-        ring?.classList.remove('hover', 'cta', 'view');
-      });
-    });
-  }
-
-  /* ==================== MAGNETIC BUTTONS ==================== */
-  if (!isTouch && !reduce) {
-    document.querySelectorAll('.magnetic').forEach((el) => {
-      const strength = 22;
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-        const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-        el.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
-      });
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'translate(0, 0)';
-      });
-    });
-  }
-
-  /* ==================== TILT CARDS ==================== */
-  if (!isTouch && !reduce) {
-    document.querySelectorAll('.tilt').forEach((el) => {
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const dx = ((e.clientX - r.left) / r.width - 0.5);
-        const dy = ((e.clientY - r.top) / r.height - 0.5);
-        const rotX = dy * -6;
-        const rotY = dx * 6;
-        el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-      });
-    });
-  } else {
-    // Still update the radial glow position on touch/reduce
-    document.querySelectorAll('.card, .proj-card').forEach((c) => {
-      c.addEventListener('mousemove', (e) => {
-        const r = c.getBoundingClientRect();
-        c.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        c.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-    });
-  }
-
-  /* ==================== TEXT SCRAMBLE ==================== */
-  class Scramble {
-    constructor(el) {
-      this.el = el;
-      this.chars = '!<>-_\\/[]{}—=+*^?#________';
-      this.queue = [];
-      this.frame = 0;
-      this.frameRequest = 0;
-      this.resolve = null;
-      this.update = this.update.bind(this);
-    }
-    setText(newText) {
-      const oldText = this.el.innerText;
-      const length = Math.max(oldText.length, newText.length);
-      const promise = new Promise((res) => (this.resolve = res));
-      this.queue = [];
-      for (let i = 0; i < length; i++) {
-        const from = oldText[i] || '';
-        const to = newText[i] || '';
+  // Keep the original scramble timing/color while preserving meaningful nested markup.
+  const scramble = el => {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), nodes = [];
+    while (walker.nextNode()) nodes.push({node: walker.currentNode, text: walker.currentNode.textContent});
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    const queue = nodes.map(item => {
+      const wrapper = document.createElement('span');
+      item.node.replaceWith(wrapper); wrapper.append(item.node);
+      return {...item, wrapper, ranges: [...item.text].map(char => {
         const start = Math.floor(Math.random() * 40);
-        const end = start + Math.floor(Math.random() * 40);
-        this.queue.push({ from, to, start, end });
-      }
-      cancelAnimationFrame(this.frameRequest);
-      this.frame = 0;
-      this.update();
-      return promise;
-    }
-    update() {
-      let output = '';
-      let complete = 0;
-      for (let i = 0; i < this.queue.length; i++) {
-        let { from, to, start, end, char } = this.queue[i];
-        if (this.frame >= end) {
-          complete++;
-          output += to;
-        } else if (this.frame >= start) {
-          if (!char || Math.random() < 0.28) {
-            char = this.chars[Math.floor(Math.random() * this.chars.length)];
-            this.queue[i].char = char;
+        return {char, start, end: start + Math.floor(Math.random() * 40), display: ''};
+      })};
+    });
+    let frame = 0, request;
+    const finish = () => queue.forEach(item => { item.node.textContent = item.text; item.wrapper.replaceWith(item.node); });
+    const update = () => {
+      if (!moving()) { finish(); return; }
+      let complete = true;
+      queue.forEach(item => {
+        const fragment = document.createDocumentFragment();
+        item.ranges.forEach(range => {
+          if (frame >= range.end) fragment.append(document.createTextNode(range.char));
+          else {
+            complete = false;
+            if (frame >= range.start) {
+              if (!range.display || Math.random() < .28) range.display = chars[Math.floor(Math.random() * chars.length)];
+              const character = document.createElement('span');
+              character.style.color = 'var(--accent)'; character.style.opacity = '.55'; character.textContent = range.display;
+              fragment.append(character);
+            } else fragment.append(document.createTextNode(range.char));
           }
-          output += `<span style="color:var(--accent);opacity:.55">${char}</span>`;
-        } else {
-          output += from;
-        }
-      }
-      this.el.innerHTML = output;
-      if (complete === this.queue.length) {
-        this.resolve();
-      } else {
-        this.frameRequest = requestAnimationFrame(this.update);
-        this.frame++;
-      }
-    }
-  }
-
-  /* ==================== GSAP SCROLL ANIMATIONS ==================== */
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero intro
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    heroTl
-      .from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.7 })
-      .from('.hero-name .line', { y: 90, opacity: 0, duration: 0.9, stagger: 0.08 }, '-=0.4')
-      .from('.hero-role', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4')
-      .from('.hero-tags .tag', { y: 20, opacity: 0, duration: 0.5, stagger: 0.05 }, '-=0.4')
-      .from('.hero-cta .btn', { y: 20, opacity: 0, duration: 0.5, stagger: 0.08 }, '-=0.3')
-      .from('.scroll-hint', { opacity: 0, y: 20, duration: 0.6 }, '-=0.2');
-
-    // Scramble the hero name lines after entry
-    if (!reduce) {
-      const scrambleEls = document.querySelectorAll('[data-scramble]');
-      scrambleEls.forEach((el, i) => {
-        const original = el.textContent;
-        el.setAttribute('data-original', original);
-        setTimeout(() => {
-          const scr = new Scramble(el);
-          scr.setText(original);
-        }, 700 + i * 120);
-      });
-    }
-
-    // Fade-up on scroll for section-heads, cards, rows
-    const groups = [
-      '.section-head', '.about-lead', '.about-body', '.about-facets .facet',
-      '.now-card', '.ach-hero', '.ach-item', '.ach-strip',
-      '.exp-row', '.spec .card', '.proj-card', '.skill-group', '.prof',
-      '.contact-card', 'footer'
-    ];
-    groups.forEach((sel) => {
-      document.querySelectorAll(sel).forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
-          },
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
-          ease: 'power3.out'
         });
+        item.wrapper.replaceChildren(fragment);
       });
-    });
-
-    // Fill bars on scroll
-    document.querySelectorAll('[data-fill]').forEach((el) => {
-      gsap.to(el, {
-        scrollTrigger: { trigger: el, start: 'top 88%' },
-        width: el.dataset.fill + '%',
-        duration: 1.6,
-        ease: 'power3.out'
-      });
-    });
-
-    // Section indices scramble on enter
-    document.querySelectorAll('.section-idx').forEach((el) => {
-      const original = el.textContent;
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        onEnter: () => {
-          if (reduce) return;
-          const scr = new Scramble(el);
-          scr.setText(original);
-        }
-      });
-    });
-
-    // Parallax on hero canvas already handled by scene.js scroll listener
-  } else {
-    // Fallback: just show everything
-    document.querySelectorAll('[style*="opacity"]').forEach((el) => (el.style.opacity = 1));
-  }
-
-  /* ==================== COUNT-UP ==================== */
-  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-  const runCount = (el) => {
-    const target = parseFloat(el.dataset.count);
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const duration = 1500;
-    const start = performance.now();
-    const tick = (now) => {
-      const p = Math.min(1, (now - start) / duration);
-      const v = target * easeOut(p);
-      el.textContent = decimals ? v.toFixed(decimals) : Math.floor(v).toString();
-      if (p < 1) requestAnimationFrame(tick);
+      if (complete) finish(); else { frame++; request = requestAnimationFrame(update); }
     };
-    requestAnimationFrame(tick);
+    update(); disposers.push(() => { cancelAnimationFrame(request); finish(); });
   };
-  const countIO = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        if (reduce) {
-          const target = parseFloat(e.target.dataset.count);
-          const decimals = parseInt(e.target.dataset.decimals || '0', 10);
-          e.target.textContent = decimals ? target.toFixed(decimals) : target.toString();
-        } else {
-          runCount(e.target);
-        }
-        countIO.unobserve(e.target);
-      }
+  safely('Hero entrance', () => {
+    if (typeof gsap === 'undefined' || !moving()) return;
+    // Original hero entrance timings, positions and easing.
+    const heroTl = gsap.timeline({defaults: {ease: 'power3.out'}});
+    heroTl
+      .from('.hero-eyebrow', {y: 20, opacity: 0, duration: .7})
+      .from('.hero-name .line', {y: 90, opacity: 0, duration: .9, stagger: .08}, '-=0.4')
+      .from('.hero-role', {y: 20, opacity: 0, duration: .7}, '-=0.4')
+      .from('.hero-tags .tag', {y: 20, opacity: 0, duration: .5, stagger: .05}, '-=0.4')
+      .from('.hero-cta .btn', {y: 20, opacity: 0, duration: .5, stagger: .08}, '-=0.3')
+      .from('.scroll-hint', {opacity: 0, y: 20, duration: .6}, '-=0.2');
+    on(window, 'portfolio:motion', () => { if (!moving()) heroTl.progress(1); });
+    document.querySelectorAll('[data-scramble]').forEach((el, i) => {
+      const timer = setTimeout(() => { if (moving()) scramble(el); }, 700 + i * 120);
+      disposers.push(() => clearTimeout(timer));
     });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('[data-count]').forEach((el) => countIO.observe(el));
-
-  /* ==================== TICKER DUPLICATE ==================== */
-  const t = document.getElementById('ticker');
-  if (t) t.innerHTML = t.innerHTML + t.innerHTML;
-
+  });
+  safely('Section transitions', () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+    const context = gsap.matchMedia();
+    context.add('(prefers-reduced-motion: no-preference)', () => {
+      if (paused) return;
+      document.querySelectorAll('.continuation .section-head, .continuation .proj-card, .continuation .exp-row').forEach(el => {
+        gsap.from(el, {y: 18, duration: .55, ease: 'power2.out', scrollTrigger: {trigger: el, start: 'top 94%', once: true}});
+      });
+    });
+    on(window, 'portfolio:motion', () => { if (!moving()) gsap.getTweensOf('.continuation *').forEach(tween => tween.progress(1)); });
+    disposers.push(() => context.revert());
+  });
+  safely('Experience progression', () => {
+    const timeline = document.querySelector('.exp');
+    let active = false, frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!active || !moving()) return;
+      const rect = timeline.getBoundingClientRect();
+      timeline.style.setProperty('--timeline-progress', Math.max(0, Math.min(1, (innerHeight * .65 - rect.top) / rect.height)));
+    };
+    const io = new IntersectionObserver(entries => { active = entries[0].isIntersecting; update(); });
+    io.observe(timeline);
+    on(window, 'scroll', () => { if (active && !frame) frame = requestAnimationFrame(update); }, {passive:true});
+    on(window, 'portfolio:motion', update);
+    disposers.push(() => { io.disconnect(); cancelAnimationFrame(frame); });
+  });
+  safely('Ticker', () => { const ticker = document.getElementById('ticker'); if (ticker) ticker.insertAdjacentHTML('beforeend', ticker.innerHTML); });
+  on(window, 'pagehide', event => { if (!event.persisted) disposers.splice(0).reverse().forEach(dispose => dispose()); });
 })();
