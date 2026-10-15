@@ -1,0 +1,364 @@
+{
+  "390": {
+    "sameLayout": true,
+    "before": {
+      "rect": {
+        "x": 0,
+        "y": 81,
+        "width": 390,
+        "height": 837.59375,
+        "top": 81,
+        "right": 390,
+        "bottom": 918.59375,
+        "left": 0
+      },
+      "children": [
+        {
+          "class": "hero-eyebrow",
+          "rect": {
+            "x": 18,
+            "y": 121,
+            "width": 354,
+            "height": 44,
+            "top": 121,
+            "right": 372,
+            "bottom": 165,
+            "left": 18
+          },
+          "font": "10px / 16px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          \n          OPEN · QUANT / AI-ML / SDE · 2027 GRAD (RESEARCH-HONORS)\n        "
+        },
+        {
+          "class": "hero-name",
+          "rect": {
+            "x": 18,
+            "y": 195,
+            "width": 354,
+            "height": 149.0625,
+            "top": 195,
+            "right": 372,
+            "bottom": 344.0625,
+            "left": 18
+          },
+          "font": "500 50.7px / 49.686px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          Gnana Sri\n          Venkata Sai\n          Bangaru\n        "
+        },
+        {
+          "class": "hero-role",
+          "rect": {
+            "x": 18,
+            "y": 366.0625,
+            "width": 354,
+            "height": 221.765625,
+            "top": 366.0625,
+            "right": 372,
+            "bottom": 587.828125,
+            "left": 18
+          },
+          "font": "14.5px / 24.65px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          CS undergrad at Vignan University, chasing quantitative research & trading roles,\n          with production experience shipping AI-agent systems, LLM pipelines and full-stack backends.\n          Currently freelancing at Amunik Pvt. Ltd., previously Genzix and Infosys Springboard.\n          Global Rank 9 at TCS CodeVita among 630K+ participants.\n        "
+        },
+        {
+          "class": "hero-tags",
+          "rect": {
+            "x": 18,
+            "y": 609.828125,
+            "width": 354,
+            "height": 102.390625,
+            "top": 609.828125,
+            "right": 372,
+            "bottom": 712.21875,
+            "left": 18
+          },
+          "font": "16px / 25.6px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          QUANTITATIVE RESEARCH\n          AI AGENTS & LLMs\n          SOFTWARE ENGINEERING\n          DSA · CP\n          LOW-LATENCY THINKING\n          DISTRIBUTED SYSTEMS\n        "
+        },
+        {
+          "class": "hero-cta",
+          "rect": {
+            "x": 18,
+            "y": 746.21875,
+            "width": 354,
+            "height": 102.375,
+            "top": 746.21875,
+            "right": 372,
+            "bottom": 848.59375,
+            "left": 18
+          },
+          "font": "16px / 25.6px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          \n            contact_me() ↗\n          \n          \n            github/outboxer005 ↗\n          \n          \n            linkedin ↗\n          \n        "
+        }
+      ]
+    },
+    "after": {
+      "rect": {
+        "x": 0,
+        "y": 81,
+        "width": 390,
+        "height": 837.59375,
+        "top": 81,
+        "right": 390,
+        "bottom": 918.59375,
+        "left": 0
+      },
+      "children": [
+        {
+          "class": "hero-eyebrow",
+          "rect": {
+            "x": 18,
+            "y": 121,
+            "width": 354,
+            "height": 44,
+            "top": 121,
+            "right": 372,
+            "bottom": 165,
+            "left": 18
+          },
+          "font": "10px / 16px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          \n          OPEN · QUANT / AI-ML / SDE · 2027 GRAD (RESEARCH-HONORS)\n        "
+        },
+        {
+          "class": "hero-name",
+          "rect": {
+            "x": 18,
+            "y": 195,
+            "width": 354,
+            "height": 149.0625,
+            "top": 195,
+            "right": 372,
+            "bottom": 344.0625,
+            "left": 18
+          },
+          "font": "500 50.7px / 49.686px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          Gnana Sri\n          Venkata Sai\n          Bangaru\n        "
+        },
+        {
+          "class": "hero-role",
+          "rect": {
+            "x": 18,
+            "y": 366.0625,
+            "width": 354,
+            "height": 221.765625,
+            "top": 366.0625,
+            "right": 372,
+            "bottom": 587.828125,
+            "left": 18
+          },
+          "font": "14.5px / 24.65px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          CS undergrad at Vignan University, chasing quantitative research & trading roles,\n          with production experience shipping AI-agent systems, LLM pipelines and full-stack backends.\n          Currently freelancing at Amunik Pvt. Ltd., previously Genzix and Infosys Springboard.\n          Global Rank 9 at TCS CodeVita among 630K+ participants.\n        "
+        },
+        {
+          "class": "hero-tags",
+          "rect": {
+            "x": 18,
+            "y": 609.828125,
+            "width": 354,
+            "height": 102.390625,
+            "top": 609.828125,
+            "right": 372,
+            "bottom": 712.21875,
+            "left": 18
+          },
+          "font": "16px / 25.6px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          QUANTITATIVE RESEARCH\n          AI AGENTS & LLMs\n          SOFTWARE ENGINEERING\n          DSA · CP\n          LOW-LATENCY THINKING\n          DISTRIBUTED SYSTEMS\n        "
+        },
+        {
+          "class": "hero-cta",
+          "rect": {
+            "x": 18,
+            "y": 746.21875,
+            "width": 354,
+            "height": 102.375,
+            "top": 746.21875,
+            "right": 372,
+            "bottom": 848.59375,
+            "left": 18
+          },
+          "font": "16px / 25.6px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          \n            contact_me() ↗\n          \n          \n            github/outboxer005 ↗\n          \n          \n            linkedin ↗\n          \n        "
+        }
+      ]
+    }
+  },
+  "1440": {
+    "sameLayout": true,
+    "before": {
+      "rect": {
+        "x": 0,
+        "y": 91,
+        "width": 1440,
+        "height": 1000,
+        "top": 91,
+        "right": 1440,
+        "bottom": 1091,
+        "left": 0
+      },
+      "children": [
+        {
+          "class": "hero-eyebrow",
+          "rect": {
+            "x": 57.59375,
+            "y": 249.234375,
+            "width": 534.8125,
+            "height": 31.59375,
+            "top": 249.234375,
+            "right": 592.40625,
+            "bottom": 280.828125,
+            "left": 57.59375
+          },
+          "font": "11px / 17.6px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          \n          OPEN · QUANT / AI-ML / SDE · 2027 GRAD (RESEARCH-HONORS)\n        "
+        },
+        {
+          "class": "hero-name",
+          "rect": {
+            "x": 57.59375,
+            "y": 310.828125,
+            "width": 1324.8125,
+            "height": 298.59375,
+            "top": 310.828125,
+            "right": 1382.40625,
+            "bottom": 609.421875,
+            "left": 57.59375
+          },
+          "font": "500 103.68px / 99.5328px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          Gnana Sri\n          Venkata Sai\n          Bangaru\n        "
+        },
+        {
+          "class": "hero-role",
+          "rect": {
+            "x": 57.59375,
+            "y": 635.421875,
+            "width": 740,
+            "height": 131.953125,
+            "top": 635.421875,
+            "right": 797.59375,
+            "bottom": 767.375,
+            "left": 57.59375
+          },
+          "font": "16px / 26.4px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          CS undergrad at Vignan University, chasing quantitative research & trading roles,\n          with production experience shipping AI-agent systems, LLM pipelines and full-stack backends.\n          Currently freelancing at Amunik Pvt. Ltd., previously Genzix and Infosys Springboard.\n          Global Rank 9 at TCS CodeVita among 630K+ participants.\n        "
+        },
+        {
+          "class": "hero-tags",
+          "rect": {
+            "x": 57.59375,
+            "y": 789.375,
+            "width": 1324.8125,
+            "height": 31.59375,
+            "top": 789.375,
+            "right": 1382.40625,
+            "bottom": 820.96875,
+            "left": 57.59375
+          },
+          "font": "16.5px / 26.4px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          QUANTITATIVE RESEARCH\n          AI AGENTS & LLMs\n          SOFTWARE ENGINEERING\n          DSA · CP\n          LOW-LATENCY THINKING\n          DISTRIBUTED SYSTEMS\n        "
+        },
+        {
+          "class": "hero-cta",
+          "rect": {
+            "x": 57.59375,
+            "y": 854.96875,
+            "width": 1324.8125,
+            "height": 48,
+            "top": 854.96875,
+            "right": 1382.40625,
+            "bottom": 902.96875,
+            "left": 57.59375
+          },
+          "font": "16.5px / 26.4px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          \n            contact_me() ↗\n          \n          \n            github/outboxer005 ↗\n          \n          \n            linkedin ↗\n          \n        "
+        }
+      ]
+    },
+    "after": {
+      "rect": {
+        "x": 0,
+        "y": 91,
+        "width": 1440,
+        "height": 1000,
+        "top": 91,
+        "right": 1440,
+        "bottom": 1091,
+        "left": 0
+      },
+      "children": [
+        {
+          "class": "hero-eyebrow",
+          "rect": {
+            "x": 57.59375,
+            "y": 249.234375,
+            "width": 534.8125,
+            "height": 31.59375,
+            "top": 249.234375,
+            "right": 592.40625,
+            "bottom": 280.828125,
+            "left": 57.59375
+          },
+          "font": "11px / 17.6px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          \n          OPEN · QUANT / AI-ML / SDE · 2027 GRAD (RESEARCH-HONORS)\n        "
+        },
+        {
+          "class": "hero-name",
+          "rect": {
+            "x": 57.59375,
+            "y": 310.828125,
+            "width": 1324.8125,
+            "height": 298.59375,
+            "top": 310.828125,
+            "right": 1382.40625,
+            "bottom": 609.421875,
+            "left": 57.59375
+          },
+          "font": "500 103.68px / 99.5328px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          Gnana Sri\n          Venkata Sai\n          Bangaru\n        "
+        },
+        {
+          "class": "hero-role",
+          "rect": {
+            "x": 57.59375,
+            "y": 635.421875,
+            "width": 740,
+            "height": 131.953125,
+            "top": 635.421875,
+            "right": 797.59375,
+            "bottom": 767.375,
+            "left": 57.59375
+          },
+          "font": "16px / 26.4px \"JetBrains Mono\", ui-monospace, \"SF Mono\", \"Cascadia Mono\", Menlo, Consolas, monospace",
+          "text": "\n          CS undergrad at Vignan University, chasing quantitative research & trading roles,\n          with production experience shipping AI-agent systems, LLM pipelines and full-stack backends.\n          Currently freelancing at Amunik Pvt. Ltd., previously Genzix and Infosys Springboard.\n          Global Rank 9 at TCS CodeVita among 630K+ participants.\n        "
+        },
+        {
+          "class": "hero-tags",
+          "rect": {
+            "x": 57.59375,
+            "y": 789.375,
+            "width": 1324.8125,
+            "height": 31.59375,
+            "top": 789.375,
+            "right": 1382.40625,
+            "bottom": 820.96875,
+            "left": 57.59375
+          },
+          "font": "16.5px / 26.4px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          QUANTITATIVE RESEARCH\n          AI AGENTS & LLMs\n          SOFTWARE ENGINEERING\n          DSA · CP\n          LOW-LATENCY THINKING\n          DISTRIBUTED SYSTEMS\n        "
+        },
+        {
+          "class": "hero-cta",
+          "rect": {
+            "x": 57.59375,
+            "y": 854.96875,
+            "width": 1324.8125,
+            "height": 48,
+            "top": 854.96875,
+            "right": 1382.40625,
+            "bottom": 902.96875,
+            "left": 57.59375
+          },
+          "font": "16.5px / 26.4px Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+          "text": "\n          \n            contact_me() ↗\n          \n          \n            github/outboxer005 ↗\n          \n          \n            linkedin ↗\n          \n        "
+        }
+      ]
+    }
+  }
+}

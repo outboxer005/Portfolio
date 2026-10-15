@@ -8,14 +8,16 @@
   const canvas = document.getElementById('hero-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let reduce = motionMedia.matches;
 
-  const renderer = new THREE.WebGLRenderer({
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
     alpha: true,
     powerPreference: 'high-performance'
-  });
+  }); } catch { return; } // Readable hero remains when WebGL is unavailable.
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const scene = new THREE.Scene();
@@ -141,19 +143,25 @@
   const current = { x: 0, y: 0 };
   const scroll = { y: 0 };
 
-  window.addEventListener('mousemove', (e) => {
+  const pointerMove = (e) => {
+    if (reduce || document.documentElement.dataset.motion === 'paused') return;
     target.x = (e.clientX / window.innerWidth - 0.5);
     target.y = (e.clientY / window.innerHeight - 0.5);
-  });
-  window.addEventListener('scroll', () => {
+  };
+  window.addEventListener('mousemove', pointerMove);
+  const scrollMove = () => {
     scroll.y = window.scrollY;
-  }, { passive: true });
+  };
+  window.addEventListener('scroll', scrollMove, { passive: true });
 
   // ---------- Animate ----------
   const clock = new THREE.Clock();
   const posAttr = geometry.attributes.position;
 
+  let frame = 0, visible = true, webglAvailable = true;
+  const moving = () => webglAvailable && !reduce && !document.hidden && visible && document.documentElement.dataset.motion !== 'paused';
   function animate() {
+    frame = 0;
     const t = clock.getElapsedTime();
 
     // ease mouse target
@@ -198,12 +206,24 @@
     ring2.rotation.z = -t * 0.18;
 
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+    if (moving()) frame = requestAnimationFrame(animate);
   }
   animate();
+  const syncMotion = () => {
+    reduce = motionMedia.matches;
+    cancelAnimationFrame(frame); frame = 0;
+    if (webglAvailable && !document.hidden && visible) {
+      if (moving()) animate(); else renderer.render(scene, camera);
+    }
+  };
+  const visibility = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; syncMotion(); });
+  visibility.observe(canvas);
+  window.addEventListener('portfolio:motion', syncMotion);
+  document.addEventListener('visibilitychange', syncMotion);
+  motionMedia.addEventListener('change', syncMotion);
 
   // Theme response — swap accent color when theme changes
-  const observer = new MutationObserver(() => {
+  const updateTheme = () => {
     const light = document.documentElement.getAttribute('data-theme') === 'light';
     const accent = light ? 0xB8760F : 0xFFB020;
     wireframeMat.color.setHex(accent);
@@ -214,6 +234,21 @@
     scene.fog.color.setHex(light ? 0xF4F3EE : 0x0A0B0F);
     particleMat.color.setHex(light ? 0x333333 : 0xFFFFFF);
     particleMat.opacity = light ? 0.35 : 0.55;
-  });
+    if (webglAvailable && !document.hidden && visible) renderer.render(scene, camera);
+  };
+  const observer = new MutationObserver(updateTheme);
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  updateTheme();
+  const contextLost = event => { event.preventDefault(); webglAvailable = false; cancelAnimationFrame(frame); canvas.style.visibility = 'hidden'; };
+  canvas.addEventListener('webglcontextlost', contextLost);
+  window.addEventListener('pagehide', event => {
+    if (event.persisted) return;
+    cancelAnimationFrame(frame); visibility.disconnect(); observer.disconnect();
+    window.removeEventListener('resize', resize); window.removeEventListener('mousemove', pointerMove); window.removeEventListener('scroll', scrollMove);
+    window.removeEventListener('portfolio:motion', syncMotion); document.removeEventListener('visibilitychange', syncMotion); motionMedia.removeEventListener('change', syncMotion);
+    canvas.removeEventListener('webglcontextlost', contextLost);
+    [geometry, ringGeom, particleGeom, accentGeom].forEach(resource => resource.dispose());
+    [solidMat, wireframeMat, ringMat, ring2.material, particleMat, accentMat].forEach(resource => resource.dispose());
+    renderer.dispose();
+  });
 })();

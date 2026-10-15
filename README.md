@@ -1,129 +1,68 @@
-# Gnana Sri — Portfolio v2
+# Gnana Sri — Portfolio
 
-Terminal-inspired, high-motion single-page portfolio for **Gnana Sri Venkata Sai Bangaru** — targeting Quant / AI-ML / SDE roles.
-
-## Stack
-
-Pure static site — no build step required.
-
-- **HTML/CSS/JS** (vanilla, no framework)
-- **Three.js** (r160) — animated 3D hero scene: wireframe icosahedron with vertex displacement + particle field + counter-rotating rings, mouse parallax
-- **GSAP 3.12** + **ScrollTrigger** — orchestrated scroll reveals, hero intro timeline, bar fills
-- **Lenis 1.0** — smooth momentum scroll
-- **Google Fonts** — JetBrains Mono, Inter, Instrument Serif
-
-All libs load from CDN — nothing to install.
-
-## Structure
-
-```
-site/
-├── index.html          # Full page markup
-├── css/
-│   └── style.css       # Design tokens + all component styles
-├── js/
-│   ├── scene.js        # Three.js hero scene
-│   └── main.js         # Cursor, tilt, magnetic, scramble, GSAP, count-up, theme
-└── README.md
-```
+Static HTML/CSS/JavaScript portfolio for Gnana Sri Venkata Sai Bangaru. The original dark/amber Three.js landing screen is preserved; the sections below it feature collaborative systems work, AI products, experience and competitive programming.
 
 ## Run locally
 
-Any static server works. Pick one:
+There is **no production build step** and no runtime npm dependency. Serve the repository root:
 
-```bash
-# Python 3
-python -m http.server 8000
-
-# Node (npx serve)
-npx serve .
-
-# VS Code — install "Live Server" extension, right-click index.html → Open with Live Server
+```sh
+python -m http.server 4173
 ```
 
-Then visit http://localhost:8000
+Or use the included development server:
 
-## Deploy
-
-### Vercel (fastest)
-
-1. Push this `site/` folder to a GitHub repo (or the whole `portfolio please` folder — Vercel can point at the subfolder).
-2. Go to https://vercel.com/new → import the repo.
-3. In "Root Directory" pick `site` (only if you pushed the parent folder).
-4. Framework preset: **Other**. Build command: *(leave blank)*. Output: *(leave blank)*.
-5. Deploy.
-
-Or via CLI:
-
-```bash
-npm i -g vercel
-cd site
-vercel
+```sh
+npm ci
+npm start
 ```
 
-### Netlify
+Open http://127.0.0.1:4173. Three.js r160, GSAP 3.12.5, ScrollTrigger, Lenis 1.0.42 and Google Fonts load from CDNs. All essential text is HTML. Navigation, theme and node controls use local JavaScript and work without the animation libraries. Without JavaScript, a mobile navigation fallback and the static architecture diagram remain available.
 
-Drag-and-drop the entire `site/` folder onto https://app.netlify.com/drop — done in ~5 seconds.
+## Source layout
 
-Or via CLI:
+- `index.html`: semantic content, metadata and native controls.
+- `css/style.css`: original design tokens and protected hero styling.
+- `css/continuation.css`: styles scoped to the continuation, plus navigation, focus and motion fixes.
+- `js/scene.js`: original hero geometry and rendering formulas, with motion, visibility and resource lifecycle guards.
+- `js/main.js`: navigation, theme, one Lenis clock, cursor, preserved hero entrance and restrained section effects.
+- `js/architecture.js`: one isolated, lazy Three.js architecture scene with accessible HTML node selection and an SVG fallback.
+- `tests/`: browser regression tests, a local server and screenshot capture script.
+- `docs/verification.md`: verification results, factual evidence and known limits.
 
-```bash
-npm i -g netlify-cli
-cd site
-netlify deploy --prod --dir .
+## Verification
+
+Node.js 18+ is required for the development tools. The current test configuration uses installed Google Chrome. Set `PLAYWRIGHT_CHANNEL=chromium` and install Playwright Chromium if needed.
+
+```sh
+npm ci
+npm run check
+npm test
 ```
 
-### GitHub Pages
+The focused suite checks 360, 390, 768, 1024 and 1440px widths, keyboard/touch navigation, mobile-menu focus, reduced motion, saved theme and motion choices, CDN and WebGL failures, JavaScript-disabled content, local assets and below-hero WCAG A/AA checks through axe.
 
-1. Push the `site/` folder as the root of a repo named `outboxer005.github.io` (user site) or any repo (project site).
-2. Repo → Settings → Pages → Source: `main` branch, folder `/root` (or `/site`).
-3. Save. Live at `https://outboxer005.github.io/<repo>`.
+With the local server running, regenerate the review screenshots:
 
-### Cloudflare Pages
-
-1. https://dash.cloudflare.com → **Workers &amp; Pages** → **Create** → **Pages** → **Connect to Git**.
-2. Select the `outboxer005/Portfolio` repo.
-3. **Framework preset:** *None*. **Build command:** *(blank)*. **Build output directory:** `/` (or `site` if you pushed the whole parent folder).
-4. **Deploy** — live at `<project-name>.pages.dev` in ~30 seconds.
-5. Custom domain: Pages project → **Custom domains** → **Set up a custom domain** — Cloudflare handles HTTPS automatically.
-
-The included `_headers` file gives Cloudflare Pages proper security headers and cache directives out of the box — no dashboard config needed.
-
-## Customize
-
-All colors and fonts live at the top of `css/style.css` as CSS variables:
-
-```css
-:root {
-  --accent:    #FFB020;   /* main accent — change this to rebrand */
-  --bg:        #0A0B0F;
-  --up:        #4AE290;   /* semantic — "positive" green */
-  ...
-}
+```sh
+node tests/capture.cjs
 ```
 
-The Three.js accent colors update automatically when you switch theme, but the hardcoded `0xFFB020` in `js/scene.js` will need editing if you change the accent hex above.
+`BASELINE_REF` defaults to the pre-change commit `b04f322`. The script uses that commit's actual source for the baseline. It freezes scene time, random particle placement and transient CSS effects only for comparison, hides sticky chrome in isolated hero/component screenshots, and records hero layout measurements. This does not change production animation behavior.
 
-Content is all in `index.html` — search for a section id (`#about`, `#work`, `#stats`, etc.) to find its markup.
+## Deployment
 
-## Features
+Publish the repository root as static assets. Existing `netlify.toml`, `vercel.json` and Cloudflare Pages `_headers` configuration remain in place. No Wrangler/Worker source or deployment workflow is checked into this repository; the live `workers.dev` deployment method cannot be established from these files. No migration is required.
 
-- Three.js hero scene with vertex-displaced icosahedron, dual particle systems, mouse parallax, scroll-linked shrink
-- Custom cursor (dot + trailing ring) with hover, CTA, and "VIEW" states
-- Magnetic buttons, tilt-on-hover cards, radial cursor-glow on all glass surfaces
-- GSAP-orchestrated hero intro + scroll-triggered reveals for every section
-- Text scramble effect on headline lines and section indices
-- Lenis momentum smooth scroll with GSAP ticker sync
-- Live scrolling ticker, marquee band, count-up numbers, fill bars
-- Dark / light theme toggle with persistent choice
-- Fully responsive (breakpoints at 900px / 720px / 560px)
-- `prefers-reduced-motion` respected throughout — animations gracefully disable
-- Touch-device fallbacks (no cursor, no tilt, no magnetic — just clean hover states)
+Do not merge or deploy automatically as part of review. Existing changed JavaScript assets use a version query to bypass the hosting configurations' immutable caches.
 
-## Browser support
+## Content maintenance
 
-Modern evergreen browsers. Uses `color-mix()`, `backdrop-filter`, `text-wrap: balance` — Chrome 111+, Firefox 113+, Safari 16.4+.
+- Keep `#hero` copy, typography, layout, scene and normal entrance protected. Compare desktop and mobile screenshots when editing shared behavior.
+- Below-hero facts were reviewed on **15 October 2026** against owner-provided information and linked public repositories. Change that date only after reviewing the underlying content.
+- Ratings are owner-provided snapshots, not a live feed. Do not infer percentiles or invent rating scales.
+- Private Amunik products use public capability descriptions only. ZapFix integration is distinguished from features evidenced in Network-Dashboard's public source.
+- Theme and pause choices are saved locally. System reduced motion overrides animation. Decorative scenes pause offscreen and when the document is hidden.
+- No résumé is present. No résumé link or invented share image is included; Open Graph and Twitter summary metadata are provided.
 
-## License
-
-Content © Gnana Sri Venkata Sai Bangaru. Code MIT — reuse the scaffold freely.
+Content © Gnana Sri Venkata Sai Bangaru.

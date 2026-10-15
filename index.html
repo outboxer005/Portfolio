@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Gnana Sri Venkata Sai Bangaru — Quant · AI · SDE. CS undergrad · TCS CodeVita Global Rank 9 · LeetCode Knight · CodeChef 5★." />
+  <meta name="description" content="Gnana Sri Venkata Sai Bangaru — software development, distributed systems and AI agents. Fourth-year B.Tech CS student, graduating July 2027. TCS CodeVita Season 13 Global Rank 9." />
   <title>Gnana Sri — Quant · AI · SDE</title>
+
+  <link rel="canonical" href="https://portfolio23.gnanasri005.workers.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Gnana Sri — Software, Systems &amp; AI" />
+  <meta property="og:description" content="Distributed monitoring, AI products and competitive programming. TCS CodeVita Season 13 Global Rank 9." />
+  <meta property="og:url" content="https://portfolio23.gnanasri005.workers.dev/" />
+  <meta name="twitter:card" content="summary" />
 
   <!-- Preconnect for CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,6 +22,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/continuation.css" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -24,9 +32,11 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#about">Skip to content</a>
+
   <!-- Custom cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
 
   <!-- Grain overlay -->
   <div class="grain" aria-hidden="true"></div>
@@ -34,31 +44,16 @@
   <!-- Ticker -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track" id="ticker">
-      <span class="ticker-item"><span class="sym">CODEVITA</span><span>RANK 09</span><span class="delta up">▲ GLOBAL</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">LEETCODE</span><span>1912</span><span class="delta up">▲ KNIGHT · TOP 4%</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">CODECHEF</span><span>2016</span><span class="delta up">▲ 5★</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">CODEFORCES</span><span>1661</span><span class="delta up">▲ EXPERT</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">DSA</span><span>800+</span><span class="delta up">▲ SOLVED</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">CONTESTS</span><span>120+</span><span class="delta up">▲ PARTICIPATED</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">GATE-2026</span><span>QUALIFIED</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">TCS-PRIME</span><span>SELECTED · 2026</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">CGPA</span><span>8.56 / 10</span></span>
-      <span class="dot">·</span>
-      <span class="ticker-item"><span class="sym">STATUS</span><span>OPEN TO ROLES</span><span class="delta up">● LIVE</span></span>
-      <span class="dot">·</span>
+      <span class="ticker-item"><span class="sym">CODEVITA S13</span><span>GLOBAL RANK 09 · ROUND 2 RANK 02</span></span><span class="dot">·</span>
+      <span class="ticker-item"><span class="sym">OWNER SNAPSHOTS</span><span>CF 2196 · CC 2020 · LC 1985</span></span><span class="dot">·</span>
+      <span class="ticker-item"><span class="sym">GATE 2026</span><span>QUALIFIED</span></span><span class="dot">·</span>
+      <span class="ticker-item"><span class="sym">B.TECH CS</span><span>EXPECTED JUL 2027</span></span><span class="dot">·</span>
+      <span class="ticker-item"><span class="sym">FOCUS</span><span>SOFTWARE · DISTRIBUTED SYSTEMS · AI AGENTS</span></span><span class="dot">·</span>
     </div>
   </div>
 
   <!-- Nav -->
-  <nav class="top-nav">
+  <nav class="top-nav" aria-label="Main navigation">
     <div class="nav-row">
       <a class="brand" href="#hero" data-cursor="hover">
         <span class="pulse"></span>
@@ -73,8 +68,16 @@
         <a href="#skills" data-cursor="hover">skills</a>
         <a href="#contact" data-cursor="hover">contact</a>
       </div>
-      <button class="theme-btn" id="themeBtn" data-cursor="hover">DARK</button>
+      <div class="nav-controls">
+        <button class="theme-btn" id="themeBtn" aria-label="Switch to light theme" data-cursor="hover" hidden>DARK</button>
+        <button class="menu-btn" id="menuBtn" aria-controls="mobileNav" aria-expanded="false" hidden>MENU <span aria-hidden="true">+</span></button>
+      </div>
     </div>
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <a href="#about">About</a><a href="#stats">Achievements</a><a href="#experience">Experience</a>
+      <a href="#focus">Focus</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+    <noscript><div class="nojs-nav"><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a></div></noscript>
   </nav>
 
   <main>
@@ -130,587 +133,157 @@
       </div>
     </section>
 
-    <!-- ============ MARQUEE BAND ============ -->
-    <div class="marquee-band">
-      <div class="marquee-track">
-        <span>QUANT RESEARCH</span><span class="sep">✦</span>
-        <span>AI AGENTS</span><span class="sep">✦</span>
-        <span>MACHINE LEARNING</span><span class="sep">✦</span>
-        <span>COMPETITIVE PROGRAMMING</span><span class="sep">✦</span>
-        <span>DISTRIBUTED SYSTEMS</span><span class="sep">✦</span>
-        <span>LOW-LATENCY</span><span class="sep">✦</span>
-        <span>LLM PIPELINES</span><span class="sep">✦</span>
-        <span>SYSTEM DESIGN</span><span class="sep">✦</span>
-        <span>QUANT RESEARCH</span><span class="sep">✦</span>
-        <span>AI AGENTS</span><span class="sep">✦</span>
-        <span>MACHINE LEARNING</span><span class="sep">✦</span>
-        <span>COMPETITIVE PROGRAMMING</span><span class="sep">✦</span>
-      </div>
+    <div class="continuation-toolbar wrap">
+      <span class="editorial-label">FROM COMPETITION TO SYSTEMS</span>
+      <button id="motionBtn" class="utility-btn" aria-pressed="false" hidden>Pause motion</button>
     </div>
 
-    <!-- ============ ABOUT ============ -->
-    <section id="about">
+    <section id="about" class="continuation" aria-labelledby="about-title">
       <div class="wrap">
-        <div class="section-head">
-          <div class="section-idx">[ 00 ]</div>
-          <div class="section-title">About — The Long Form</div>
-        </div>
-
+        <div class="section-head"><div class="section-idx">[ 00 ]</div><h2 class="section-title" id="about-title">About — A little context</h2></div>
         <div class="section-body">
           <div class="about-grid">
-
             <div class="about-lead">
-              <p class="about-quote">
-                <span class="quote-mark">&ldquo;</span>
-                I don&#39;t chase clean code — I chase <em>correctness under pressure</em>. The rest is craft.
-                <span class="quote-mark right">&rdquo;</span>
-              </p>
-
+              <p class="about-quote">From solving the problem to <em>designing the system.</em></p>
               <div class="about-meta">
-                <div>
-                  <div class="k">Based in</div>
-                  <div class="v">Guntur, AP · India</div>
-                </div>
-                <div>
-                  <div class="k">Timezone</div>
-                  <div class="v">IST · UTC+5:30</div>
-                </div>
-                <div>
-                  <div class="k">Currently</div>
-                  <div class="v">Amunik · Freelance AI</div>
-                </div>
-                <div>
-                  <div class="k">Graduating</div>
-                  <div class="v">2027 · Research-Honors</div>
-                </div>
+                <div><div class="k">Based in</div><div class="v">Guntur, AP · India</div></div>
+                <div><div class="k">Currently</div><div class="v">Freelance AI Engineer · Amunik</div></div>
+                <div><div class="k">Education</div><div class="v">B.Tech Computer Science · Fourth year</div></div>
+                <div><div class="k">Expected graduation</div><div class="v">July 2027</div></div>
               </div>
             </div>
-
             <div class="about-body">
-              <p>
-                I&#39;m a Computer Science undergrad at <b>Vignan&#39;s Foundation for Science, Technology &amp; Research</b>
-                on the Research-Honors track. My real training ground has been the scoreboard —
-                <b>800+</b> problems solved, <b>120+</b> contests entered, and a <b>Global Rank 9</b>
-                at TCS CodeVita Season 13 against 630,000+ programmers worldwide (Rank 2 in Round 2).
-              </p>
-
-              <p>
-                That&#39;s why I&#39;m aiming at <span class="amber-underline">quantitative research &amp; trading</span> — the seat where
-                algorithmic problem-solving under time pressure, statistical intuition, and clean systems all matter at once.
-                While I optimize for that, I ship real work in the two adjacent worlds: <b>AI-agent systems</b> at
-                Amunik and Genzix (LangGraph, LangChain, RAG, evaluation loops), and <b>full-stack engineering</b>
-                with Spring Boot / React / Flutter / Docker.
-              </p>
-
-              <p>
-                I like problems that reward taste as much as horsepower — a good heuristic beats a brute solver,
-                a well-shaped agent workflow beats a monolith prompt, and a single well-placed test beats a
-                thousand assertions. TCS Prime selection this year, GATE 2026 qualified, and I&#39;m actively
-                interviewing.
-              </p>
-
+              <p>I'm a fourth-year Computer Science student at <b>Vignan's Foundation for Science, Technology &amp; Research</b>, on the Research-Honors track. I enjoy software development, software architecture, distributed systems, AI agents and LLM applications.</p>
+              <p>Competitive programming taught me to reason carefully under pressure. In <b>TCS CodeVita Season 13</b>, I placed <b>Global Rank 9 among 630,000+ participants</b>, with <b>Global Rank 2 in Round 2</b>.</p>
+              <p>At <b>Amunik Pvt Ltd</b>, I work as the sole AI developer on startup products. Alongside that work, I'm exploring how telemetry, incident analysis and remote execution fit together in a collaboratively developed monitoring platform.</p>
               <div class="about-facets">
-                <div class="facet">
-                  <div class="facet-num">01</div>
-                  <div class="facet-title">Compete</div>
-                  <div class="facet-body">Weekly contests on Codeforces, LeetCode, CodeChef. It keeps the reflexes sharp.</div>
-                </div>
-                <div class="facet">
-                  <div class="facet-num">02</div>
-                  <div class="facet-title">Build</div>
-                  <div class="facet-body">Multi-agent systems, RAG pipelines, and dashboards that make model behavior legible.</div>
-                </div>
-                <div class="facet">
-                  <div class="facet-num">03</div>
-                  <div class="facet-title">Ship</div>
-                  <div class="facet-body">Freelance client work at Amunik — production features, iterated across review cycles.</div>
-                </div>
-                <div class="facet">
-                  <div class="facet-num">04</div>
-                  <div class="facet-title">Study</div>
-                  <div class="facet-body">System design, distributed systems, and enough statistics to speak the quant dialect.</div>
-                </div>
+                <div class="facet"><div class="facet-num">01 / BUILD</div><h3 class="facet-title">Useful software</h3><div class="facet-body">Clear interfaces, thoughtful architecture and systems that explain their state.</div></div>
+                <div class="facet"><div class="facet-num">02 / LEARN</div><h3 class="facet-title">Closer to the machine</h3><div class="facet-body">Learning low-latency C++, quant/trading fundamentals, market microstructure and order books.</div></div>
               </div>
             </div>
           </div>
-
-          <!-- Now / Currently -->
-          <div class="now-card tilt">
-            <div class="now-head">
-              <span class="now-badge"><span class="pulse-small"></span> CURRENTLY</span>
-              <span class="now-date">Q3 · 2026</span>
-            </div>
+          <div class="now-card">
+            <div class="now-head"><span class="now-badge">ON THE DESK</span><time class="now-date" datetime="2026-10-15">Content reviewed · 15 Oct 2026</time></div>
             <div class="now-grid">
-              <div>
-                <div class="now-k">Building</div>
-                <div class="now-v">Agent orchestration modules &amp; RAG evaluators for Amunik clients.</div>
-              </div>
-              <div>
-                <div class="now-k">Reading</div>
-                <div class="now-v">Advances in Financial Machine Learning · Marcos López de Prado.</div>
-              </div>
-              <div>
-                <div class="now-k">Grinding</div>
-                <div class="now-v">Codeforces Div. 2 &amp; LeetCode weekly contests. Target: Guardian.</div>
-              </div>
-              <div>
-                <div class="now-k">Status</div>
-                <div class="now-v"><span class="pulse-small"></span>Actively looking &amp; open to conversations.</div>
-              </div>
+              <div><div class="now-k">Building</div><div class="now-v">AI Vtron, Callix and Finman at Amunik.</div></div>
+              <div><div class="now-k">Exploring</div><div class="now-v">Distributed monitoring and incident analysis.</div></div>
+              <div><div class="now-k">Learning</div><div class="now-v">C++ systems and market fundamentals.</div></div>
+              <div><div class="now-k">Let's talk</div><div class="now-v"><a href="#contact">Software and AI opportunities ↗</a></div></div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ============ STATS ============ -->
-    <section id="stats">
+    <section id="work" class="continuation" aria-labelledby="work-title">
       <div class="wrap">
-        <div class="section-head">
-          <div class="section-idx">[ 01 ]</div>
-          <div class="section-title">Ranks &amp; Ratings — Snapshot</div>
-        </div>
+        <div class="section-head"><div class="section-idx">[ 01 ]</div><h2 class="section-title" id="work-title">Selected work — From signal to action</h2></div>
+        <div class="section-body">
+          <article class="flagship" aria-labelledby="monitor-title">
+            <div class="flagship-intro">
+              <div><p class="editorial-label">01 / DISTRIBUTED SYSTEMS · COLLABORATIVE PROJECT</p><h3 id="monitor-title">Distributed System Monitoring<br /><em>&amp; Incident Analysis Platform</em></h3></div>
+              <a class="text-link" href="https://github.com/NareshReddyGoli/Network-Dashboard" target="_blank" rel="noopener">Explore source ↗</a>
+            </div>
+            <p class="project-lede">Many computers. Repeated alerts. One place to understand what happened — and what to investigate next.</p>
+            <div class="architecture" id="architecture">
+              <div class="architecture-head"><span class="demo-label">ILLUSTRATIVE DEMO · NOT CONNECTED TO DEVICES</span><span class="architecture-instruction">Select a node to explore</span></div>
+              <div class="architecture-stage" id="architectureStage">
+                <canvas id="architectureCanvas" aria-hidden="true"></canvas>
+                <svg class="architecture-fallback" viewBox="0 0 1000 440" aria-hidden="true" preserveAspectRatio="none"><path d="M130 105 L460 210 M130 335 L460 210 M460 210 L760 70 M460 210 L760 210 M760 210 L760 370 M460 210 L460 370" /></svg>
+                <div class="architecture-nodes" role="group" aria-label="Architecture nodes. Use Tab or arrow keys, then Enter or Space to select.">
+                  <button class="architecture-node host-a" data-node="agents" aria-pressed="false" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">▣</span><strong>Computer A</strong><small>psutil agent</small></button>
+                  <button class="architecture-node host-b" data-node="hosts" aria-pressed="false" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">▣</span><strong>Computer B</strong><small>psutil agent</small></button>
+                  <button class="architecture-node controller" data-node="controller" aria-pressed="true" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">⌘</span><strong>Controller</strong><small>FastAPI · REST / WS</small></button>
+                  <button class="architecture-node database" data-node="database" aria-pressed="false" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">▤</span><strong>Persistence</strong><small>PostgreSQL</small></button>
+                  <button class="architecture-node incidents" data-node="incidents" aria-pressed="false" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">◇</span><strong>Incidents</strong><small>Filter · correlate</small></button>
+                  <button class="architecture-node rag" data-node="rag" aria-pressed="false" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">✳</span><strong>Async RAG</strong><small>Runbooks → analysis</small></button>
+                  <button class="architecture-node zapfix" data-node="zapfix" aria-pressed="false" aria-controls="nodeDetail"><span class="node-icon" aria-hidden="true">↵</span><strong>ZapFix</strong><small>Integration direction</small></button>
+                </div>
+              </div>
+              <div class="architecture-legend"><span><i class="legend-amber"></i>Telemetry &amp; incident flow</span><span><i class="legend-cyan"></i>Proposed command / feedback path</span></div>
+              <div id="nodeDetail" class="node-detail" role="status" aria-live="polite" aria-atomic="true"><span class="detail-index">SELECTED / CONTROLLER</span><h4>One controller, a shared operational picture.</h4><p>The central FastAPI service aggregates telemetry and exposes device status, metrics and incident updates through REST APIs and WebSockets. JWT authenticates users; a configured API key authenticates agents.</p></div>
+              <noscript><p class="architecture-noscript">The static diagram shows agents → controller → persistence and incidents → asynchronous RAG. ZapFix is the proposed remote-command and execution-feedback integration. Detailed roles are described below.</p></noscript>
+            </div>
+            <div class="project-notes">
+              <div><h4>The architecture</h4><p>Python <b>psutil</b> agents collect CPU, memory, disk, network, process and host telemetry from multiple computers. A central <b>FastAPI</b> controller stores data with <b>PostgreSQL, SQLAlchemy and Alembic</b>, then publishes status and incident updates.</p><p>Configurable sampling and bounded retries keep collection resilient. Repeated-breach filtering, alert deduplication, severity escalation and correlation turn recurring signals into incident workflows.</p></div>
+              <div><h4>Analysis without blocking ingestion</h4><p>Asynchronous RAG retrieves runbooks and historical incident resolutions. LLM work runs in background tasks outside the ingestion response path. User authentication uses JWT; agent authentication uses API keys when configured.</p><h4>My contribution</h4><p>Developed collaboratively with a friend. I built the AI and execution workflows using LangGraph, LangChain and LLM orchestration. This contribution is owner-reported; the linked source documents the shared monitoring platform.</p></div>
+              <div><h4>Implementation status</h4><p><span class="status-tag">IN PUBLIC SOURCE</span> Telemetry, persistence, REST/WebSockets, incident workflows and optional background RAG.</p><p><span class="status-tag planned">INTEGRATION DIRECTION</span> ZapFix desktop/terminal agents for remote commands and execution status/feedback. This owner-described integration is not yet evidenced in the linked source.</p><p class="source-note">Retry note: the README describes exponential backoff; the current telemetry agent code uses a linear retry delay. No scale or performance benchmarks are claimed.</p></div>
+            </div>
+            <div class="stack-line">Python / psutil / FastAPI / PostgreSQL / SQLAlchemy / Alembic / REST / WebSockets / JWT / RAG</div>
+          </article>
 
+          <div class="featured-grid">
+            <article class="proj-card tilt">
+              <div class="head"><span class="kind">02 / APPLIED AI · AMUNIK</span><span class="private-label">PRIVATE PROJECTS</span></div>
+              <div class="project-art product-art" aria-hidden="true"><span class="art-frame">AI</span><span class="art-orbit"></span><span class="art-caption">IMAGE → CONVERSATION → GUIDANCE</span></div>
+              <h3>AI products, built for people.</h3><p>As the sole AI developer at Amunik, I work across three startup products.</p>
+              <ul class="highlights"><li><b>AI Vtron</b> — visual try-on combining ChatGPT API visual changes with a virtual try-on model.</li><li><b>Callix</b> — a conversational calling agent.</li><li><b>Finman</b> — tax-return and financial guidance with CA–customer collaboration.</li></ul>
+              <div class="foot"><span class="project-caption">Freelance AI Engineer · Private client work</span><a class="text-link" href="mailto:gnanasri005@gmail.com">Discuss my work ↗</a></div>
+            </article>
+            <article class="proj-card tilt">
+              <div class="head"><span class="kind">03 / CONSTRAINT OPTIMIZATION</span><span class="private-label">PUBLIC SOURCE</span></div>
+              <div class="project-art schedule-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><b>CONSTRAINTS → SCHEDULE</b></div>
+              <h3>Automated Timetable Generator</h3><p>A Python scheduling project using Google OR-Tools and CP-SAT to turn institutional constraints into a timetable.</p><ul class="highlights"><li>Models faculty availability and teaching-load constraints.</li><li>Explores a practical constraint-programming approach to scheduling.</li><li>Public source includes validation scripts and a Streamlit guide.</li></ul>
+              <div class="foot"><span class="project-caption">Python · OR-Tools · CP-SAT</span><a class="text-link" href="https://github.com/outboxer005/Automated-time-table-generator" target="_blank" rel="noopener">Project source ↗</a></div>
+            </article>
+          </div>
+          <div class="secondary-projects">
+            <h3>More experiments &amp; builds</h3>
+            <div class="secondary-row"><div><h4>Chess Trainer &amp; Practice</h4><p>Single-player Stockfish practice with Angular, Java Spring Boot and SQL.</p></div><a class="text-link" href="https://github.com/outboxer005/Chess_FullStack" target="_blank" rel="noopener">Project source ↗</a></div>
+            <div class="secondary-row"><div><h4>Learning platforms &amp; applied ML</h4><p>CoderKytes, handwritten-digit recognition, placement-cell tooling, automated grading, messaging automation and code-generation experiments.</p></div><a class="text-link" href="https://github.com/outboxer005" target="_blank" rel="noopener">GitHub profile ↗</a></div>
+            <div class="secondary-row"><div><h4>C++20 Market Data &amp; Order Book Engine</h4><p>Planned learning project: market-data handling and order-book fundamentals. No completed implementation or benchmarks claimed.</p></div><span class="status-tag planned">PLANNED</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="continuation" aria-labelledby="stats-title">
+      <div class="wrap"><div class="section-head"><div class="section-idx">[ 02 ]</div><h2 class="section-title" id="stats-title">Competitive programming — The scoreboard</h2></div>
         <div class="section-body">
           <div class="ach-grid">
-
-            <div class="ach-hero card tilt">
-              <div>
-                <div class="ach-hero-eyebrow">TCS CODEVITA · SEASON 13 · GLOBAL FINALS</div>
-                <h3>Global Rank 9 — Top 10 finalist worldwide.</h3>
-                <p>Secured <b class="amber">Global Rank 2 in Round 2</b> and finished in the Top 10 on-campus finals at TCS Mumbai on advanced competitive coding problems. Beat out 630,000+ participants across the world.</p>
-                <div class="ach-hero-meta">
-                  <span>▲ 630K+ participants</span>
-                  <span class="mute">·</span>
-                  <span>▲ On-campus finalist · Mumbai</span>
-                </div>
-              </div>
-              <div class="ach-num"><small>#</small><span data-count="9" data-decimals="0">0</span></div>
-            </div>
-
-            <div class="ach-item card tilt">
-              <div class="platform">LEETCODE <span class="rank">▲ TOP 4%</span></div>
-              <div class="headline"><span class="amber" data-count="1912">0</span></div>
-              <div class="sub">Knight · consistent contest finisher</div>
-              <div class="bar"><div data-fill="82"></div></div>
-            </div>
-
-            <div class="ach-item card tilt">
-              <div class="platform">CODECHEF <span class="rank">▲ 5-STAR</span></div>
-              <div class="headline"><span class="amber" data-count="2016">0</span></div>
-              <div class="sub">Long-standing 5★ · out_boxer005</div>
-              <div class="bar"><div data-fill="88"></div></div>
-            </div>
-
-            <div class="ach-item card tilt">
-              <div class="platform">CODEFORCES <span class="rank">▲ EXPERT</span></div>
-              <div class="headline"><span class="amber" data-count="1661">0</span></div>
-              <div class="sub">Kroenen0_0 · regular Div. 2 &amp; Div. 3</div>
-              <div class="bar"><div data-fill="76"></div></div>
-            </div>
-
-            <div class="ach-strip">
-              <div>
-                <div class="k">Selection</div>
-                <div class="v">TCS Prime · 2026</div>
-              </div>
-              <div>
-                <div class="k">GATE 2026</div>
-                <div class="v">Qualified</div>
-              </div>
-              <div>
-                <div class="k">Hackathons</div>
-                <div class="v">Multiple wins</div>
-              </div>
-              <div>
-                <div class="k">Cambridge English</div>
-                <div class="v">B2 · 162/170</div>
-              </div>
-            </div>
+            <article class="ach-hero card tilt"><div><div class="ach-hero-eyebrow">TCS CODEVITA · SEASON 13</div><h3>Global Rank 9.</h3><p>Among <b class="amber">630,000+ participants</b> worldwide, with <b class="amber">Global Rank 2 in Round 2</b>.</p><div class="ach-hero-meta"><span>Problem solving under pressure</span></div></div><div class="ach-num" aria-hidden="true"><small>#</small>9</div></article>
+            <a class="ach-item card tilt" href="https://codeforces.com/profile/Kroenen0_0" target="_blank" rel="noopener"><div class="platform">CODEFORCES <span class="rank">↗</span></div><div class="headline amber">2196</div><div class="sub">Master · Kroenen0_0</div><span class="snapshot-label">Owner-provided snapshot</span></a>
+            <a class="ach-item card tilt" href="https://www.codechef.com/users/out_boxer005" target="_blank" rel="noopener"><div class="platform">CODECHEF <span class="rank">↗</span></div><div class="headline amber">2020</div><div class="sub">5-Star · out_boxer005</div><span class="snapshot-label">Owner-provided snapshot</span></a>
+            <a class="ach-item card tilt" href="https://leetcode.com/u/Kroenen0_0/" target="_blank" rel="noopener"><div class="platform">LEETCODE <span class="rank">↗</span></div><div class="headline amber">1985</div><div class="sub">Knight · Kroenen0_0</div><span class="snapshot-label">Owner-provided snapshot</span></a>
           </div>
+          <p class="source-note rating-note">Supplied ratings are dated snapshots, not live values. Current versus peak status is unconfirmed; linked profiles may differ.</p>
+          <div class="certifications"><div><span class="editorial-label">GATE 2026</span><h3>Qualified</h3></div><div><span class="editorial-label">CAMBRIDGE ENGLISH</span><h3>B2 certified</h3></div><div><span class="editorial-label">AWS CERTIFIED</span><h3>Cloud Practitioner</h3><p>September 2026 – September 2029</p></div></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
-    <section id="experience">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-idx">[ 02 ]</div>
-          <div class="section-title">Experience — Timeline</div>
-        </div>
-
-        <div class="section-body">
-          <div class="exp">
-
-            <div class="exp-row now">
-              <div class="exp-date">JUN 2026 — PRESENT <span class="live">● LIVE</span></div>
-              <div>
-                <h3 class="exp-role">Freelance AI Engineer</h3>
-                <div class="exp-org">Amunik Private Limited</div>
-                <div class="exp-desc">
-                  Shipping production LLM-powered features and multi-agent workflows for enterprise automation.
-                  <ul>
-                    <li>Designed RAG pipelines and LLM evaluation frameworks for structured &amp; unstructured data.</li>
-                    <li>Contributed reusable open-source modules for agent orchestration to the team repo.</li>
-                    <li>Iterated on features across client review cycles — spec &rarr; ship &rarr; measure.</li>
-                  </ul>
-                </div>
-                <div class="exp-stack">
-                  <span class="tag">LangGraph</span><span class="tag">LangChain</span>
-                  <span class="tag">Python</span><span class="tag">FastAPI</span>
-                  <span class="tag">Vector DBs</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="exp-row">
-              <div class="exp-date">JUL 2025 — JUN 2026</div>
-              <div>
-                <h3 class="exp-role">AI Skill Integration Intern</h3>
-                <div class="exp-org">Genzix</div>
-                <div class="exp-desc">
-                  Built multi-agent AI systems and evaluation loops used to monitor and improve production LLM outputs.
-                  <ul>
-                    <li>Improved RAG response accuracy ~30% through retrieval + prompt-eval iteration.</li>
-                    <li>Built dashboards to monitor agent workflows and reduce hallucinations.</li>
-                    <li>Reviewed PRs with senior engineers across a shared multi-service codebase.</li>
-                  </ul>
-                </div>
-                <div class="exp-stack">
-                  <span class="tag">LangChain</span><span class="tag">LangGraph</span>
-                  <span class="tag">Python</span><span class="tag">REST</span>
-                  <span class="tag">Evals</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="exp-row">
-              <div class="exp-date">FEB 2026 — APR 2026</div>
-              <div>
-                <h3 class="exp-role">Java Full-Stack Intern</h3>
-                <div class="exp-org">Infosys Springboard</div>
-                <div class="exp-desc">
-                  Built and shipped full-stack apps: Spring Boot backends, React frontends, MySQL persistence.
-                  <ul>
-                    <li>Designed REST APIs supporting concurrent workloads with JUnit coverage.</li>
-                    <li>Submitted reusable frontend PRs into a shared team codebase.</li>
-                    <li>Applied OOP, clean architecture and testing before merge.</li>
-                  </ul>
-                </div>
-                <div class="exp-stack">
-                  <span class="tag">Spring Boot</span><span class="tag">React</span>
-                  <span class="tag">MySQL</span><span class="tag">JUnit</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="exp-row">
-              <div class="exp-date">2026 · SELECTION</div>
-              <div>
-                <h3 class="exp-role">TCS Prime — Offered</h3>
-                <div class="exp-org">Tata Consultancy Services</div>
-                <div class="exp-desc">
-                  Received selection letter for TCS Prime (top hiring track) — reserved for the highest-scoring campus candidates.
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+    <section id="experience" class="continuation" aria-labelledby="experience-title">
+      <div class="wrap"><div class="section-head"><div class="section-idx">[ 03 ]</div><h2 class="section-title" id="experience-title">Experience — Work in context</h2></div>
+        <div class="section-body"><div class="exp">
+          <article class="exp-row now"><div class="exp-date">JUN 2026 — PRESENT</div><div><h3 class="exp-role">Freelance AI Engineer</h3><div class="exp-org">Amunik Pvt Ltd</div><div class="exp-desc">Sole AI developer working on startup products.<ul><li>AI Vtron: visual changes through the ChatGPT API combined with a virtual try-on model.</li><li>Callix: conversational calling agent.</li><li>Finman: tax returns, financial guidance and CA–customer collaboration.</li></ul></div><div class="exp-stack"><span class="tag">AI agents</span><span class="tag">LLM applications</span><span class="tag">Python</span></div></div></article>
+          <article class="exp-row"><div class="exp-date">JUL 2025 — JUN 2026</div><div><h3 class="exp-role">AI Skill Integration Intern</h3><div class="exp-org">Genzix</div><div class="exp-desc">Worked with LLMs, retrieval-augmented generation and agent workflows.<ul><li>Iterated on retrieval and prompts to improve response quality.</li><li>Built dashboards for observing agent workflows and evaluating outputs.</li><li>Worked with LangChain, LangGraph, Python and REST APIs.</li></ul></div></div></article>
+          <article class="exp-row"><div class="exp-date">FEB 2026 — APR 2026</div><div><h3 class="exp-role">Java Full-Stack Intern</h3><div class="exp-org">Infosys Springboard</div><div class="exp-desc">Built full-stack applications with Spring Boot backends, React frontends and MySQL persistence. Worked on REST APIs, object-oriented design and JUnit testing.</div><div class="exp-stack"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">MySQL</span><span class="tag">JUnit</span></div></div></article>
+          <article class="exp-row"><div class="exp-date">2026 · SELECTION</div><div><h3 class="exp-role">TCS Prime — Offered</h3><div class="exp-org">Tata Consultancy Services</div><div class="exp-desc">TCS Prime selection, as recorded in the existing portfolio. This is an offer, not employment experience.</div></div></article>
+        </div></div>
       </div>
     </section>
 
-    <!-- ============ FOCUS ============ -->
-    <section id="focus">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-idx">[ 03 ]</div>
-          <div class="section-title">Focus Areas — What I&#39;m Optimizing For</div>
-        </div>
-
-        <div class="section-body">
-          <div class="spec">
-            <div class="card tilt">
-              <div class="num"><span>01 · PRIMARY</span><span class="badge">TARGET</span></div>
-              <h3>Quantitative <span class="amber">Research &amp; Trading</span></h3>
-              <p>The intersection I&#39;m building toward: algorithmic problem-solving under latency &amp; correctness pressure, statistical modeling, and pattern analysis over structured/unstructured data.</p>
-              <div class="stack">
-                <span>C++</span><span>Python</span><span>NumPy</span><span>Pandas</span>
-                <span>Statistics</span><span>Heuristics</span><span>DSA · CP</span>
-              </div>
-            </div>
-
-            <div class="card tilt">
-              <div class="num"><span>02 · APPLIED</span><span class="badge violet">SHIPPING</span></div>
-              <h3>AI Agents, <span class="amber">LLMs &amp; ML</span></h3>
-              <p>Multi-agent systems, RAG pipelines with contextual retrieval, prompt/eval frameworks, and CNN-based ML models — used in production at Amunik and Genzix.</p>
-              <div class="stack">
-                <span>LangGraph</span><span>LangChain</span><span>RAG</span>
-                <span>TensorFlow</span><span>OpenCV</span><span>FastAPI</span>
-              </div>
-            </div>
-
-            <div class="card tilt">
-              <div class="num"><span>03 · FOUNDATION</span><span class="badge cyan">CORE</span></div>
-              <h3>Software <span class="amber">Engineering</span></h3>
-              <p>Distributed systems, backend design, and full-stack shipping — Spring Boot, React, Node, Flutter, Docker. Comfortable across unfamiliar codebases.</p>
-              <div class="stack">
-                <span>Spring Boot</span><span>React</span><span>Next.js</span>
-                <span>Node.js</span><span>Docker</span><span>MongoDB</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section id="focus" class="continuation" aria-labelledby="focus-title">
+      <div class="wrap"><div class="section-head"><div class="section-idx">[ 04 ]</div><h2 class="section-title" id="focus-title">Focus — Building &amp; learning</h2></div>
+        <div class="section-body"><div class="spec">
+          <article class="card tilt"><div class="num"><span>01 / SOFTWARE</span><span class="badge">BUILDING</span></div><h3>Architecture <span class="amber">&amp; distributed systems</span></h3><p>Software development, backend design and the boundaries between services. Turning scattered operational signals into a readable system.</p><div class="stack"><span>FastAPI</span><span>Spring Boot</span><span>PostgreSQL</span><span>WebSockets</span></div></article>
+          <article class="card tilt"><div class="num"><span>02 / APPLIED AI</span><span class="badge">BUILDING</span></div><h3>Agents <span class="amber">&amp; LLM applications</span></h3><p>Retrieval, agent orchestration and useful AI product interactions. Interested in making workflows easier to inspect and improve.</p><div class="stack"><span>LangGraph</span><span>LangChain</span><span>RAG</span><span>Python</span></div></article>
+          <article class="card tilt"><div class="num"><span>03 / SYSTEMS</span><span class="badge">LEARNING</span></div><h3>C++ systems <span class="amber">&amp; market fundamentals</span></h3><p>Currently learning low-latency C++, quant/trading fundamentals, market microstructure and order books. These are learning interests.</p><div class="stack"><span>C++20</span><span>Order books</span><span>Market microstructure</span></div></article>
+        </div></div>
       </div>
     </section>
-
-    <!-- ============ WORK ============ -->
-    <section id="work">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-idx">[ 04 ]</div>
-          <div class="section-title">Selected Work — Built &amp; Shipped</div>
-        </div>
-
-        <div class="section-body">
-          <div class="proj">
-
-            <a class="proj-card wide tilt" href="https://drive.google.com/file/d/10QV0IUTHgQCBtWjJS3DY8B8zevVQ_XAr/view?usp=sharing" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">AI · MULTI-AGENT · DESKTOP</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>ZapFix — Autonomous Multi-Agent Platform</h3>
-              <p>An on-device software assistant packaged as a native desktop app. Instead of a single monolithic prompt, ZapFix routes a task through a graph of specialised agents — a planner, a retriever, a code/tool executor, and a critic — that hand off state until the task closes.</p>
-              <ul class="highlights">
-                <li><b>Agentic RAG</b> with contextual retrieval &amp; dynamic workflow routing, cutting hallucinations vs. a flat prompt baseline.</li>
-                <li><b>Reasoning-chain dashboard</b> — React UI visualises every agent hop, tool call, and intermediate state so failures are debuggable, not opaque.</li>
-                <li><b>Cross-platform native shell</b> — Tauri + Bun for a ~15MB binary that runs on Windows / macOS / Linux with system-level tool access.</li>
-                <li>Built the evaluation loop myself: prompt-eval harness, regression seeds, and pass-rate metrics tracked over time.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-                <span><span class="m-k">Status</span><span class="m-v amber">Shipping</span></span>
-                <span><span class="m-k">Type</span><span class="m-v">Desktop · AI Agent</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>React</span><span>Tauri</span><span>Bun</span>
-                  <span>LangGraph</span><span>LangChain</span><span>RAG</span><span>TypeScript</span>
-                </div>
-                <div class="links">
-                  <a href="https://drive.google.com/file/d/10QV0IUTHgQCBtWjJS3DY8B8zevVQ_XAr/view?usp=sharing" target="_blank" rel="noopener">DEMO ↗</a>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card med tilt" href="https://autotimetablegenerator.streamlit.app/" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">CONSTRAINT · OPTIMIZATION</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>Automated Timetable Generator</h3>
-              <p>A production optimizer built on Google OR-Tools <b>CP-SAT</b> that produces clash-free institutional timetables at real scale — up to <b>250 faculty × 30 sections</b> in a single solve.</p>
-              <ul class="highlights">
-                <li>Models faculty availability, room capacity, subject-hour requirements, and back-to-back load as hard/soft constraints.</li>
-                <li>Solves what took the placement office a week by hand in <b>under two minutes</b>.</li>
-                <li>Streamlit front-end for admins; MERN back-office integration for persistence + edits.</li>
-                <li>Deployed live and currently in use — links below.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-                <span><span class="m-k">Status</span><span class="m-v amber">Live</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>OR-Tools</span><span>CP-SAT</span><span>Python</span><span>Streamlit</span><span>MERN</span>
-                </div>
-                <div class="links">
-                  <a href="https://autotimetablegenerator.streamlit.app/" target="_blank" rel="noopener">LIVE ↗</a>
-                  <a href="https://github.com/outboxer005/Automated-time-table-generator" target="_blank" rel="noopener">CODE ↗</a>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card med tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">FULL-STACK · EDU</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>CoderKytes — Learning Platform</h3>
-              <p>Full-stack coding-practice platform. Users pick a topic, read a short lesson, then solve problems with a live Docker-sandboxed runner — code stays isolated, exit codes and stdout stream back in real time.</p>
-              <ul class="highlights">
-                <li><b>Sandboxed execution</b> — each submission spins a short-lived Docker container with resource + timeout caps.</li>
-                <li><b>Progress tracking</b> — Firebase-backed submission history, streaks, and per-topic mastery.</li>
-                <li>Real-time updates so learners see leaderboard and submission activity without refresh.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-                <span><span class="m-k">Type</span><span class="m-v">EdTech · Full-stack</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>Next.js</span><span>Firebase</span><span>Docker</span><span>Node.js</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card med tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">ML · CNN · API</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>Handwritten Digit Recognition</h3>
-              <p>End-to-end ML system — a CNN trained on MNIST, served through a Spring Boot inference API, consumed by a React drawing canvas that predicts what you sketch in real time.</p>
-              <ul class="highlights">
-                <li><b>~99% test accuracy</b> on MNIST with a compact CNN (Conv → Pool → Conv → Dense).</li>
-                <li>Model exported and served behind a Spring Boot REST endpoint for sub-100ms inference.</li>
-                <li>React canvas captures strokes, normalises to 28×28, and POSTs to the API — demo-friendly loop end-to-end.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-                <span><span class="m-k">Type</span><span class="m-v">ML System</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>TensorFlow</span><span>Python</span><span>Spring Boot</span><span>React</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card wide tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">FLUTTER · MERN · REAL-TIME</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>Placement Cell Platform</h3>
-              <p>An end-to-end campus-recruitment platform — one Flutter mobile app for students and one MERN admin portal for placement officers, sharing a single MongoDB source of truth.</p>
-              <ul class="highlights">
-                <li><b>Student app</b> — drive listings, one-tap eligibility check against CGPA / backlog / branch, resume upload, application status timeline, push notifications.</li>
-                <li><b>Admin portal</b> — company onboarding, eligibility-rule builder, applicant filtering, analytics dashboard for placement stats by branch/company.</li>
-                <li><b>Real-time notifications</b> pushed on state changes (shortlist / rejected / final offer).</li>
-                <li>Designed for the actual scale of a real placement cell — hundreds of students, dozens of concurrent drives.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-                <span><span class="m-k">Type</span><span class="m-v">Full-stack · Mobile + Web</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>Flutter</span><span>Dart</span><span>MERN</span><span>Node.js</span><span>Express</span><span>MongoDB</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card med tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">AI · OCR · NLP</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>AI Automated Grading System</h3>
-              <p>Grades handwritten answer sheets automatically. Tesseract extracts the handwriting, an NLP scoring pipeline compares against a reference answer key using semantic similarity + rubric weights, and results flow through a Flask + Spring hybrid API.</p>
-              <ul class="highlights">
-                <li><b>OCR front-end</b> — Tesseract with pre-processing (deskew, denoise) tuned for student handwriting.</li>
-                <li><b>Scoring engine</b> — cosine similarity on sentence embeddings + keyword rubric, tunable per question.</li>
-                <li>Two-tier serving — Flask for the ML inference, Spring for auth &amp; persistence — so the ML box can scale independently.</li>
-                <li>Cuts hours of manual grading down to minutes for objective/short-answer papers.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-                <span><span class="m-k">Type</span><span class="m-v">AI · OCR Pipeline</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>Tesseract</span><span>Flask</span><span>NLP</span><span>Spring</span><span>Python</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card small tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">AUTOMATION · CHATBOT</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>WhatsApp Chatbot</h3>
-              <p>Python automation bot for scheduled messaging, keyword-triggered replies, and broadcast to contact lists — built to remove repetitive comms work.</p>
-              <ul class="highlights">
-                <li>Scheduled sends via cron-style triggers.</li>
-                <li>Rule-based auto-reply for FAQ-shaped queries.</li>
-                <li>Contact-list broadcast with per-message delay to stay within API limits.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>Python</span><span>WhatsApp API</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card small tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">LLM · CODEGEN</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>Code Generator App</h3>
-              <p>TypeScript app that turns a natural-language spec into runnable code using an LLM behind a structured prompt — my playground for prompt-engineering, tool-call, and output-format experiments.</p>
-              <ul class="highlights">
-                <li>System prompts tuned for language + framework + style constraints.</li>
-                <li>Structured JSON outputs so the UI can render code, filename, and reasoning separately.</li>
-                <li>Feeds insights back into the ZapFix agent pipeline.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>TypeScript</span><span>LLM API</span>
-                </div>
-              </div>
-            </a>
-
-            <a class="proj-card small tilt" href="https://github.com/outboxer005/Chess_FullStack" target="_blank" rel="noopener" data-cursor="view">
-              <div class="head">
-                <span class="kind">FULL-STACK · GAME</span>
-                <span class="arrow">↗</span>
-              </div>
-              <h3>Chess FullStack</h3>
-              <p>Server-authoritative chess platform — Java Spring backend enforces move legality &amp; game state, Angular front-end handles the board, matchmaking, and clock UI.</p>
-              <ul class="highlights">
-                <li>Move validation on the server so clients can&#39;t cheat.</li>
-                <li>Session-based matchmaking with reconnect.</li>
-                <li>PGN-style move history persisted to the DB.</li>
-              </ul>
-              <div class="meta-row">
-                <span><span class="m-k">Role</span><span class="m-v">Solo build</span></span>
-              </div>
-              <div class="foot">
-                <div class="stack">
-                  <span>Java</span><span>Spring</span><span>Angular</span>
-                </div>
-              </div>
-            </a>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ SKILLS ============ -->
-    <section id="skills">
+    <section id="skills" class="continuation" aria-labelledby="skills-title">
       <div class="wrap">
         <div class="section-head">
           <div class="section-idx">[ 05 ]</div>
-          <div class="section-title">Stack &amp; Tooling</div>
+          <h2 class="section-title" id="skills-title">Stack &amp; Tooling</h2>
         </div>
 
         <div class="section-body">
           <div class="skills">
             <div class="skill-group">
-              <h4>Languages</h4>
+              <h3>Languages</h3>
               <div class="skill-list">
                 <span class="primary">C++</span><span class="primary">Python</span><span class="primary">Java</span>
                 <span>JavaScript</span><span>TypeScript</span><span>C</span><span>Dart</span><span>Bash</span>
@@ -718,7 +291,7 @@
             </div>
 
             <div class="skill-group">
-              <h4>AI / ML / Agents</h4>
+              <h3>AI / ML / Agents</h3>
               <div class="skill-list">
                 <span class="primary">LangGraph</span><span class="primary">LangChain</span>
                 <span class="primary">RAG</span><span>Multi-Agent Systems</span>
@@ -729,7 +302,7 @@
             </div>
 
             <div class="skill-group">
-              <h4>Quant-adjacent · CS Core</h4>
+              <h3>Computer Science</h3>
               <div class="skill-list">
                 <span class="primary">Data Structures</span><span class="primary">Algorithms</span>
                 <span>System Design</span><span>Distributed Systems</span>
@@ -739,7 +312,7 @@
             </div>
 
             <div class="skill-group">
-              <h4>Backend / Full-Stack</h4>
+              <h3>Backend / Full-Stack</h3>
               <div class="skill-list">
                 <span>Spring Boot</span><span>FastAPI</span><span>Flask</span>
                 <span>Node.js</span><span>Express</span><span>React</span>
@@ -748,7 +321,7 @@
             </div>
 
             <div class="skill-group">
-              <h4>Data · Infra</h4>
+              <h3>Data · Infra</h3>
               <div class="skill-list">
                 <span>MySQL</span><span>MongoDB</span><span>PostgreSQL</span>
                 <span>Neo4j</span><span>Firebase</span><span>Docker</span>
@@ -758,14 +331,14 @@
             </div>
 
             <div class="skill-group">
-              <h4>Certifications</h4>
+              <h3>Certifications</h3>
               <div class="skill-list">
                 <span>GATE 2026 · Qualified</span>
                 <span>NPTEL DSA Java · Elite+Silver</span>
                 <span>NPTEL Cloud · Elite</span>
                 <span>NPTEL Python · Elite+Silver</span>
                 <span>Cisco Networking</span>
-                <span>Cambridge English B2</span>
+                <span>Cambridge English B2</span><span>AWS Cloud Practitioner · Sep 2026–Sep 2029</span>
               </div>
             </div>
           </div>
@@ -774,33 +347,33 @@
     </section>
 
     <!-- ============ PROFILES ============ -->
-    <section id="profiles">
+    <section id="profiles" class="continuation" aria-labelledby="profiles-title">
       <div class="wrap">
         <div class="section-head">
           <div class="section-idx">[ 06 ]</div>
-          <div class="section-title">Presence — Where I&#39;m Live</div>
+          <h2 class="section-title" id="profiles-title">Profiles — Find my work</h2>
         </div>
         <div class="section-body">
           <div class="profiles">
             <a class="prof tilt" href="https://github.com/outboxer005" target="_blank" rel="noopener" data-cursor="view">
               <div class="name">GITHUB</div>
               <div class="handle">outboxer005</div>
-              <div class="stat">▲ 40+ repos</div>
+              <div class="stat">GitHub profile</div>
             </a>
             <a class="prof tilt" href="https://leetcode.com/u/Kroenen0_0/" target="_blank" rel="noopener" data-cursor="view">
               <div class="name">LEETCODE</div>
               <div class="handle">Kroenen0_0</div>
-              <div class="stat">▲ 1912 · Knight</div>
+              <div class="stat">1985 · Knight · owner snapshot</div>
             </a>
             <a class="prof tilt" href="https://www.codechef.com/users/out_boxer005" target="_blank" rel="noopener" data-cursor="view">
               <div class="name">CODECHEF</div>
               <div class="handle">out_boxer005</div>
-              <div class="stat">▲ 2016 · 5★</div>
+              <div class="stat">2020 · 5★ · owner snapshot</div>
             </a>
             <a class="prof tilt" href="https://codeforces.com/profile/Kroenen0_0" target="_blank" rel="noopener" data-cursor="view">
               <div class="name">CODEFORCES</div>
               <div class="handle">Kroenen0_0</div>
-              <div class="stat">▲ 1661 · EXPERT</div>
+              <div class="stat">2196 · Master · owner snapshot</div>
             </a>
             <a class="prof tilt" href="https://www.linkedin.com/in/gnanasri005" target="_blank" rel="noopener" data-cursor="view">
               <div class="name">LINKEDIN</div>
@@ -813,18 +386,18 @@
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <section id="contact">
+    <section id="contact" class="continuation" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="section-head">
           <div class="section-idx">[ 07 ]</div>
-          <div class="section-title">Contact — Let&#39;s Build</div>
+          <h2 class="section-title" id="contact-title">Contact — Let&#39;s Build</h2>
         </div>
 
         <div class="section-body">
           <div class="contact-card tilt">
             <div>
-              <h2>Hiring for a <span class="amber">quant</span>, AI, or SDE seat?</h2>
-              <p>I&#39;m actively interviewing — happy to walk you through my CodeVita solutions, ZapFix agent design, or ship something small during a screen. Fastest response is via email.</p>
+              <h2>Let&#39;s build something <span class="amber">useful.</span></h2>
+              <p>Open to conversations about software development, distributed systems and AI applications. Happy to discuss my projects, collaborative work or competitive programming. Email is the best way to reach me.</p>
             </div>
             <div class="contact-actions">
               <a class="btn primary magnetic" href="mailto:gnanasri005@gmail.com" data-cursor="cta">gnanasri005@gmail.com ↗</a>
@@ -835,7 +408,7 @@
 
           <footer>
             <div>GNANA_SRI <span class="caret">/&gt;</span> Guntur · Andhra Pradesh · IN</div>
-            <div>BUILT 2026 · v2.0 · <span class="caret">●</span> LIVE</div>
+            <div>CONTENT REVIEWED · 15 OCT 2026</div>
           </footer>
         </div>
       </div>
@@ -850,7 +423,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
   <!-- App scripts -->
-  <script src="js/scene.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/scene.js?v=20261015"></script>
+  <script src="js/main.js?v=20261015"></script>
+  <script src="js/architecture.js"></script>
 </body>
 </html>
